@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\GeneralPurposeController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -14,6 +16,26 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::prefix('v1')->group(function () {
+
+    // Route::post('login', [UserController::class, 'login']);
+    // Route::post('register', [UserController::class, 'register']);
+
+    Route::prefix('general_purpose')->group(function () {
+        Route::get('/', [GeneralPurposeController::class, 'index']);
+        Route::post('create', [GeneralPurposeController::class, 'create']);
+        Route::put('update/{id}', [GeneralPurposeController::class, 'update']);
+        Route::delete('delete/{id}', [GeneralPurposeController::class, 'delete']);
+    });
+
+    Route::group(['middleware' => ['auth:sanctum']], function () {
+        
+        // Route::prefix('general_purpose')->group(function () {
+        //     Route::get('/', [GeneralPurpose::class, 'index']);
+        //     Route::post('create', [GeneralPurpose::class, 'create']);
+        //     // Route::post('update/{id}', [GeneralPurpose::class, 'update']);
+        //     // Route::delete('delete/{id}', [GeneralPurpose::class, 'delete']);
+        // });
+    });
+
 });

@@ -2,7 +2,9 @@
 
 namespace App\Providers;
 
+use App\Repositories\EventRepository;
 use App\Repositories\GeneralPurposeRepository;
+use App\Repositories\Interface\IEventRepository;
 use App\Repositories\Interface\IGeneralPurposeRepository;
 use Illuminate\Support\ServiceProvider;
 
@@ -16,6 +18,10 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(
             IGeneralPurposeRepository::class,
             GeneralPurposeRepository::class
+        );
+        $this->app->bind(
+            IEventRepository::class,
+            EventRepository::class
         );
     }
 

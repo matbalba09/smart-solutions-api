@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\EventController;
 use App\Http\Controllers\GeneralPurposeController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
@@ -27,6 +28,12 @@ Route::prefix('v1')->group(function () {
         Route::post('create', [GeneralPurposeController::class, 'create']);
         Route::put('update/{id}', [GeneralPurposeController::class, 'update']);
         Route::delete('delete/{id}', [GeneralPurposeController::class, 'delete']);
+    });
+    Route::prefix('event')->group(function () {
+        Route::get('/', [EventController::class, 'index']);
+        Route::post('create', [EventController::class, 'create']);
+        Route::put('update/{id}', [EventController::class, 'update']);
+        Route::delete('delete/{id}', [EventController::class, 'delete']);
     });
 
     Route::group(['middleware' => ['auth:sanctum']], function () {

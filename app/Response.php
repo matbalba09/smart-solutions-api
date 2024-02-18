@@ -32,6 +32,11 @@ class Response
     const SUCCESSFULLY_UPDATED_GENERAL_PURPOSE = 'Successfully updated general purpose';
     const SUCCESSFULLY_DELETED_GENERAL_PURPOSE = 'Successfully deleted general purpose';
 
+    const SUCCESSFULLY_GET_EVENTS = 'Successfully get events';
+    const SUCCESSFULLY_CREATED_EVENT = 'Successfully created event';
+    const SUCCESSFULLY_UPDATED_EVENT = 'Successfully updated event';
+    const SUCCESSFULLY_DELETED_EVENT = 'Successfully deleted event';
+
     const INVALID_CREDENTIAL = 'Invalid Credentials';
     const SUCCESSFULLY_LOGGED_IN = 'Successfully Logged In';
     const SUCCESSFULLY_CREATED_USER = 'Successfully Created User';

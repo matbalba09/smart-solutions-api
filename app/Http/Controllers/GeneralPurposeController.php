@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateGeneralPurposeRequest;
 use App\Http\Requests\UpdateGeneralPurposeRequest;
 use App\Models\GeneralPurpose;
-use App\Repositories\IGeneralPurposeRepository;
+use App\Repositories\Interface\IGeneralPurposeRepository;
 use App\Response;
 use Illuminate\Http\Request;
 

@@ -4,7 +4,7 @@ namespace App\Repositories;
 
 use Carbon\Carbon;
 use App\Models\GeneralPurpose;
-use App\Repositories\IGeneralPurposeRepository;
+use App\Repositories\Interface\IGeneralPurposeRepository;
 
 class GeneralPurposeRepository implements IGeneralPurposeRepository{
 

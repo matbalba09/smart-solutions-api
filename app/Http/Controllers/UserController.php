@@ -4,14 +4,55 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Repositories\Interface\IUserRepository;
 use App\Response;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
+    private IUserRepository $userRepository;
+
+    public function __construct(IUserRepository $userRepository)
+    {
+        $this->userRepository = $userRepository;
+    }
+
     public function login(Request $request)
     {
+        // if ($request->filled('fp_users')) {
+        //     $user = User::where('fp_users', $request->fp_users)->first();
+        // } elseif ($request->filled('email')) {
+        //     $user = User::where('email', $request->email)->first();
+        // } else {
+        //     $user = null; // No valid input provided
+        // }
+
+        // if ($user) {
+        //     // User found, check password if 'email' is provided
+        //     if ($request->filled('email') && !Hash::check($request->password, $user->password)) {
+        //         $response = [
+        //             'code' => Response::HTTP_NOT_FOUND,
+        //             'status' => Response::FAIL,
+        //             'message' => Response::INVALID_CREDENTIAL,
+        //         ];
+        //     } else {
+        //         $response = [
+        //             'code' => Response::HTTP_SUCCESS,
+        //             'status' => Response::SUCCESS,
+        //             'message' => Response::SUCCESSFULLY_LOGGED_IN,
+        //         ];
+        //     }
+        // } else {
+        //     // User not found
+        //     $response = [
+        //         'code' => Response::HTTP_NOT_FOUND,
+        //         'status' => Response::FAIL,
+        //         'message' => Response::USER_NOT_FOUND,
+        //     ];
+        // }
+    
+        // return response()->json($response, $response['code']);
         if ($request->has('fp_users')) {
             $user = User::where('fp_users', $request->fp_users)->first();
             if (!$user) {
@@ -63,6 +104,15 @@ class UserController extends Controller
 
     public function register(Request $request)
     {
+        $existingUser = $this->userRepository->getUserByEmail($request->email);
+
+        if ($existingUser){
+            $response = [
+                'code' => Response::HTTP_CONFLICT,
+                'status' => Response::FAIL,
+                'message' => Response::INVALID_EMAIL,
+            ];
+        }
 
         $user = User::create([
             'name' => $request->name,
@@ -74,7 +124,7 @@ class UserController extends Controller
         $response = [
             'code' => Response::HTTP_SUCCESS_POST,
             'status' => Response::SUCCESS,
-            'message' => Response::SUCCESSFULLY_CREATED_USER,
+            'message' => Response::SUCCESSFULLY_REGISTERED_USER,
             'user' => $user,
         ];
 

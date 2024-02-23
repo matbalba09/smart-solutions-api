@@ -9,6 +9,7 @@ class Response
     const HTTP_SUCCESS_NO_RETURN = 204;
     const HTTP_FORBIDDEN = 403; 
     const HTTP_NOT_FOUND = 404;
+    const HTTP_CONFLICT = 409;
     const HTTP_NOT_PROCESSABLE = 422;
 
     const SUCCESS = 'Success';
@@ -38,8 +39,10 @@ class Response
     const SUCCESSFULLY_DELETED_EVENT = 'Successfully deleted event';
 
     const INVALID_CREDENTIAL = 'Invalid Credentials';
+    const INVALID_EMAIL = 'Email already exists';
     const SUCCESSFULLY_LOGGED_IN = 'Successfully Logged In';
-    const SUCCESSFULLY_CREATED_USER = 'Successfully Created User';
+    const SUCCESSFULLY_REGISTERED_USER = 'Successfully Registered User';
     const INCORRECT_LOGIN_INPUT = 'Please input email';
     const USER_NOT_FOUND = 'User not found';
+
 }

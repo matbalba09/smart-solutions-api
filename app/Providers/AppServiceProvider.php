@@ -6,6 +6,8 @@ use App\Repositories\EventRepository;
 use App\Repositories\GeneralPurposeRepository;
 use App\Repositories\Interface\IEventRepository;
 use App\Repositories\Interface\IGeneralPurposeRepository;
+use App\Repositories\Interface\IUserRepository;
+use App\Repositories\UserRepository;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -15,6 +17,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
+        $this->app->bind(
+            IUserRepository::class,
+            UserRepository::class
+        );
         $this->app->bind(
             IGeneralPurposeRepository::class,
             GeneralPurposeRepository::class

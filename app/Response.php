@@ -18,6 +18,10 @@ class Response
     const TRUE = 1;
     const FALSE = 0;
 
+    const SUPER_ADMIN = 0;
+    const ADMIN = 1;
+    const USER = 2;
+
     const MALE = 1;
     const FEMALE = 2;
     const MALE_STRING = "MALE";
@@ -45,4 +49,6 @@ class Response
     const INCORRECT_LOGIN_INPUT = 'Please input email';
     const USER_NOT_FOUND = 'User not found';
 
+    const GENERAL_PURPOSE = 1;
+    const EVENT = 2;
 }

@@ -50,7 +50,7 @@ class EventUserController extends Controller
     public function createMany(Request $request)
     {
         $eventId = $request->input('event_id');
-        $userIds = $request->input('user_id', []);
+        $userIds = $request->input('user_id');
 
         $eventUser = $this->eventUser->createEventUsers($eventId, $userIds);
 

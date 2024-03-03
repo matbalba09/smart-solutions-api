@@ -35,7 +35,7 @@ class UserRepository implements IUserRepository
     function getUserFpByUserId($id)
     {
         $user = User::where('id', $id)->first();
-        return $user->fp_user;
+        return $user;
     }
 
     function getUserByName($name)

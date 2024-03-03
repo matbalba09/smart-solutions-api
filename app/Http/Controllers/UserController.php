@@ -145,13 +145,14 @@ class UserController extends Controller
                 'status' => Response::FAIL,
                 'message' => Response::USER_NOT_FOUND,
             ];
+            return response()->json($response, $response['code']);
         }
 
         $response = [
             'code' => Response::HTTP_SUCCESS,
             'status' => Response::SUCCESS,
             'message' => Response::SUCCESSFULLY_GET_USER_FINGER_PRINT,
-            'data' => $user,
+            'data' => $user->fp_user,
         ];
 
         return response()->json($response, $response['code']);
@@ -167,6 +168,7 @@ class UserController extends Controller
                 'status' => Response::FAIL,
                 'message' => Response::USER_NOT_FOUND,
             ];
+            return response()->json($response, $response['code']);
         }
 
         $response = [

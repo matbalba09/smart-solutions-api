@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\EventController;
+use App\Http\Controllers\EventUserController;
 use App\Http\Controllers\GeneralPurposeController;
+use App\Http\Controllers\LogController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -22,28 +24,28 @@ Route::prefix('v1')->group(function () {
 
     Route::post('login', [UserController::class, 'login']);
     Route::post('register', [UserController::class, 'register']);
+    Route::put('registerUserFp/{id}', [UserController::class, 'registerUserFp']);
 
-    Route::prefix('general_purpose')->group(function () {
-        Route::get('/', [GeneralPurposeController::class, 'index']);
-        Route::post('create', [GeneralPurposeController::class, 'create']);
-        Route::put('update/{id}', [GeneralPurposeController::class, 'update']);
-        Route::delete('delete/{id}', [GeneralPurposeController::class, 'delete']);
-    });
     Route::prefix('event')->group(function () {
         Route::get('/', [EventController::class, 'index']);
+        Route::get('getAllbyEventType/{event_type}', [EventController::class, 'getAllbyEventType']);
         Route::post('create', [EventController::class, 'create']);
         Route::put('update/{id}', [EventController::class, 'update']);
         Route::delete('delete/{id}', [EventController::class, 'delete']);
     });
 
+    Route::prefix('eventUser')->group(function () {
+        Route::get('/', [EventUserController::class, 'index']);
+        Route::get('getAllByEventId/{id}', [EventUserController::class, 'getAllByEventId']);
+        Route::post('create', [EventUserController::class, 'create']);
+    });
+
+    Route::prefix('log')->group(function () {
+        Route::get('/', [LogController::class, 'index']);
+        Route::post('create', [LogController::class, 'create']);
+    });
+
     Route::group(['middleware' => ['auth:sanctum']], function () {
-        
-        // Route::prefix('general_purpose')->group(function () {
-        //     Route::get('/', [GeneralPurpose::class, 'index']);
-        //     Route::post('create', [GeneralPurpose::class, 'create']);
-        //     // Route::post('update/{id}', [GeneralPurpose::class, 'update']);
-        //     // Route::delete('delete/{id}', [GeneralPurpose::class, 'delete']);
-        // });
     });
 
 });

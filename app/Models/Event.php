@@ -10,8 +10,13 @@ class Event extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name',
+        'event_name',
+        'event_type',
     ];
 
     protected $guarded = [];
+
+    public function user(){
+        return $this->hasMany(User::class,'user_id','id');
+    }
 }

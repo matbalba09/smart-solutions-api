@@ -5,13 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class GeneralPurpose extends Model
+class EventUser extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'name',
+        'user_id',
+        'event_id',
     ];
-
-    protected $guarded = [];
 }

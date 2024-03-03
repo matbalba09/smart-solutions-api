@@ -22,14 +22,30 @@ class EventController extends Controller
     public function index()
     {
         //
-        $event = $this->event->getEvent();
+        $events = $this->event->getAllEvents();
 
         $response = [
             'code' => Response::HTTP_SUCCESS,
             'status' => Response::SUCCESS,
             'message' => Response::SUCCESSFULLY_GET_EVENTS,
             'count' => Event::count(),
-            'data' => $event,
+            'data' => $events,
+        ];
+
+        return response()->json($response, $response['code']);
+    }
+
+    public function getAllbyEventType($event_type)
+    {
+        //
+        $events = $this->event->getAllEventsbyEventType($event_type);
+
+        $response = [
+            'code' => Response::HTTP_SUCCESS,
+            'status' => Response::SUCCESS,
+            'message' => Response::SUCCESSFULLY_GET_EVENTS,
+            'count' => Event::count(),
+            'data' => $events,
         ];
 
         return response()->json($response, $response['code']);
@@ -38,13 +54,13 @@ class EventController extends Controller
     public function create(CreateEventRequest $request)
     {
         //
-        $generalPurpose = $this->event->createEvent($request->name);
+        $event = $this->event->createEvent($request->event_name,$request->event_type);
 
         $response = [
             'code' => Response::HTTP_SUCCESS_POST,
             'status' => Response::SUCCESS,
             'message' => Response::SUCCESSFULLY_CREATED_EVENT,
-            'data' => $generalPurpose,
+            'data' => $event,
         ];
 
         return response()->json($response, $response['code']);
@@ -53,13 +69,13 @@ class EventController extends Controller
     public function update(UpdateEventRequest $request, $id)
     {
         //
-        $generalPurpose = $this->event->updateEvent($request->name,$id);
+        $event = $this->event->updateEvent($request->event_name,$request->event_type,$id);
 
         $response = [
             'code' => Response::HTTP_SUCCESS,
             'status' => Response::SUCCESS,
             'message' => Response::SUCCESSFULLY_UPDATED_EVENT,
-            'data' => $generalPurpose,
+            'data' => $event,
         ];
 
         return response()->json($response, $response['code']);

@@ -8,37 +8,44 @@ use App\Repositories\Interface\IEventRepository;
 
 class EventRepository implements IEventRepository{
 
-    function getEvent(){
+    function getAllEvents(){
 
-        $generalPurpose = Event::get();
-
-        return $generalPurpose;
+        $events = Event::get();
+        return $events;
     }
 
-    function createEvent($name){
+    function getAllEventsbyEventType($event_type){
+
+        $events = Event::where('event_type', $event_type)->get();
+        return $events;
+    }
+
+    function createEvent($event_name,$event_type){
         
-        $generalPurpose = Event::create([
-            'name' => $name,
+        $event = Event::create([
+            'event_name' => $event_name,
+            'event_type' => $event_type,
         ]);
 
-        return $generalPurpose;
+        return $event;
     }
 
-    function updateEvent($name, $id){
+    function updateEvent($event_name,$event_type,$id){
 
-        $generalPurpose = Event::findOrFail($id);
+        $event = Event::findOrFail($id);
 
-        $generalPurpose->name = $name;
-        $generalPurpose->updated_at = Carbon::now();
-        $generalPurpose->save();
+        $event->event_name = $event_name;
+        $event->event_type = $event_type;
+        $event->updated_at = Carbon::now();
+        $event->save();
 
-        return $generalPurpose;
+        return $event;
     }
 
     function deleteEvent($id){
-        $generalPurpose = Event::findOrFail($id);
-        $generalPurpose->delete();
+        $event = Event::findOrFail($id);
+        $event->delete();
         
-        return $generalPurpose;
+        return $event;
     }
 }

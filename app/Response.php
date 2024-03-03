@@ -32,11 +32,6 @@ class Response
     const IS_A_NUMBER = 'must be a number';
     const IS_AN_EMAIL = 'must be an email';
 
-    const SUCCESSFULLY_GET_GENERAL_PURPOSE = 'Successfully get general purpose';
-    const SUCCESSFULLY_CREATED_GENERAL_PURPOSE = 'Successfully created general purpose';
-    const SUCCESSFULLY_UPDATED_GENERAL_PURPOSE = 'Successfully updated general purpose';
-    const SUCCESSFULLY_DELETED_GENERAL_PURPOSE = 'Successfully deleted general purpose';
-
     const SUCCESSFULLY_GET_EVENTS = 'Successfully get events';
     const SUCCESSFULLY_CREATED_EVENT = 'Successfully created event';
     const SUCCESSFULLY_UPDATED_EVENT = 'Successfully updated event';
@@ -46,8 +41,17 @@ class Response
     const INVALID_EMAIL = 'Email already exists';
     const SUCCESSFULLY_LOGGED_IN = 'Successfully Logged In';
     const SUCCESSFULLY_REGISTERED_USER = 'Successfully Registered User';
+    const SUCCESSFULLY_REGISTERED_USER_FINGER_PRINT = 'Successfully Registered User finger print';
     const INCORRECT_LOGIN_INPUT = 'Please input email';
     const USER_NOT_FOUND = 'User not found';
+
+    const SUCCESSFULLY_GET_EVENT_USERS = 'Successfully get event users';
+    const SUCCESSFULLY_CREATED_EVENT_USER = 'Successfully created event user';
+    const SUCCESSFULLY_UPDATED_EVENT_USER = 'Successfully updated event user';
+    const SUCCESSFULLY_DELETED_EVENT_USER = 'Successfully deleted event user';
+
+    const SUCCESSFULLY_GET_LOGS = 'Successfully get logs';
+    const SUCCESSFULLY_CREATED_LOG = 'Successfully created log';
 
     const GENERAL_PURPOSE = 1;
     const EVENT = 2;

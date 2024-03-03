@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateGeneralPurposeRequest extends FormRequest
+class CreateLogRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,7 +22,8 @@ class UpdateGeneralPurposeRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'nullable|string',
+            'event_id' => 'nullable|integer',
+            'user_id' => 'nullable|integer',
         ];
     }
 }

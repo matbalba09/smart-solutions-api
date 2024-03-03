@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\UpdateUserRequest;
 use App\Models\User;
 use App\Repositories\Interface\IUserRepository;
 use App\Response;
@@ -20,39 +21,6 @@ class UserController extends Controller
 
     public function login(Request $request)
     {
-        // if ($request->filled('fp_users')) {
-        //     $user = User::where('fp_users', $request->fp_users)->first();
-        // } elseif ($request->filled('email')) {
-        //     $user = User::where('email', $request->email)->first();
-        // } else {
-        //     $user = null; // No valid input provided
-        // }
-
-        // if ($user) {
-        //     // User found, check password if 'email' is provided
-        //     if ($request->filled('email') && !Hash::check($request->password, $user->password)) {
-        //         $response = [
-        //             'code' => Response::HTTP_NOT_FOUND,
-        //             'status' => Response::FAIL,
-        //             'message' => Response::INVALID_CREDENTIAL,
-        //         ];
-        //     } else {
-        //         $response = [
-        //             'code' => Response::HTTP_SUCCESS,
-        //             'status' => Response::SUCCESS,
-        //             'message' => Response::SUCCESSFULLY_LOGGED_IN,
-        //         ];
-        //     }
-        // } else {
-        //     // User not found
-        //     $response = [
-        //         'code' => Response::HTTP_NOT_FOUND,
-        //         'status' => Response::FAIL,
-        //         'message' => Response::USER_NOT_FOUND,
-        //     ];
-        // }
-    
-        // return response()->json($response, $response['code']);
         if ($request->has('fp_users')) {
             $user = User::where('fp_users', $request->fp_users)->first();
             if (!$user) {
@@ -116,9 +84,8 @@ class UserController extends Controller
 
         $user = User::create([
             'name' => $request->name,
-            'fp_users' => $request->fp_users,
             'email' => $request->email,
-            'password' => Hash::make($request->password),
+            'password' => $request->password,
         ]);
 
         $response = [
@@ -126,6 +93,20 @@ class UserController extends Controller
             'status' => Response::SUCCESS,
             'message' => Response::SUCCESSFULLY_REGISTERED_USER,
             'user' => $user,
+        ];
+
+        return response()->json($response, $response['code']);
+    }
+
+    public function registerUserFp(UpdateUserRequest $request, $id)
+    {
+        $user = $this->userRepository->updateUser($request->fp_user,$id);
+
+        $response = [
+            'code' => Response::HTTP_SUCCESS,
+            'status' => Response::SUCCESS,
+            'message' => Response::SUCCESSFULLY_REGISTERED_USER_FINGER_PRINT,
+            'data' => $user,
         ];
 
         return response()->json($response, $response['code']);

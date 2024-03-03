@@ -22,7 +22,8 @@ class CreateEventRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'nullable|string',
+            'event_name' => 'nullable|string',
+            'event_type' => 'nullable|integer',
         ];
     }
 }

@@ -11,8 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('log_types', function (Blueprint $table) {
+        Schema::create('event_users', function (Blueprint $table) {
             $table->id();
+            $table->integer('event_id')->nullable();
+            $table->integer('user_id')->nullable();
             $table->timestamps();
         });
     }
@@ -22,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('log_types');
+        Schema::dropIfExists('event_users');
     }
 };

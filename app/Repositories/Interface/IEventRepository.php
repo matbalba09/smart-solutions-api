@@ -5,8 +5,9 @@ namespace App\Repositories\Interface;
 interface IEventRepository
 {
 
-    function getEvent();
-    function createEvent($name);
-    function updateEvent($name, $id);
+    function getAllEvents();
+    function getAllEventsbyEventType($event_type);
+    function createEvent($event_name,$event_type);
+    function updateEvent($event_name,$event_type,$id);
     function deleteEvent($id);
 }

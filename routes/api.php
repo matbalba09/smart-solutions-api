@@ -3,6 +3,7 @@
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\EventUserController;
 use App\Http\Controllers\GeneralPurposeController;
+use App\Http\Controllers\HeartbeatController;
 use App\Http\Controllers\LogController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
@@ -22,9 +23,16 @@ use Illuminate\Support\Facades\Route;
 
 Route::prefix('v1')->group(function () {
 
-    Route::post('login', [UserController::class, 'login']);
-    Route::post('register', [UserController::class, 'register']);
-    Route::put('registerUserFp/{id}', [UserController::class, 'registerUserFp']);
+    Route::get('Heartbeat', [HeartbeatController::class, 'Heartbeat']);
+
+    Route::prefix('user')->group(function () {
+        Route::get('/', [UserController::class, 'index']);
+        Route::post('login', [UserController::class, 'login']);
+        Route::post('register', [UserController::class, 'register']);
+        Route::put('registerUserFp/{id}', [UserController::class, 'registerUserFp']);
+        Route::get('getUserFpByUserId/{id}', [UserController::class, 'getUserFpByUserId']);
+        Route::get('getUserByName/{name}', [UserController::class, 'getUserByName']);
+    });
 
     Route::prefix('event')->group(function () {
         Route::get('/', [EventController::class, 'index']);
@@ -37,7 +45,7 @@ Route::prefix('v1')->group(function () {
     Route::prefix('eventUser')->group(function () {
         Route::get('/', [EventUserController::class, 'index']);
         Route::get('getAllByEventId/{id}', [EventUserController::class, 'getAllByEventId']);
-        Route::post('create', [EventUserController::class, 'create']);
+        Route::post('create', [EventUserController::class, 'createMany']);
     });
 
     Route::prefix('log')->group(function () {
@@ -47,5 +55,4 @@ Route::prefix('v1')->group(function () {
 
     Route::group(['middleware' => ['auth:sanctum']], function () {
     });
-
 });

@@ -2,12 +2,12 @@
 
 namespace App;
 
-class Response 
+class Response
 {
     const HTTP_SUCCESS = 200;
     const HTTP_SUCCESS_POST = 201;
     const HTTP_SUCCESS_NO_RETURN = 204;
-    const HTTP_FORBIDDEN = 403; 
+    const HTTP_FORBIDDEN = 403;
     const HTTP_NOT_FOUND = 404;
     const HTTP_CONFLICT = 409;
     const HTTP_NOT_PROCESSABLE = 422;
@@ -32,7 +32,7 @@ class Response
     const IS_A_NUMBER = 'must be a number';
     const IS_AN_EMAIL = 'must be an email';
 
-    const SUCCESSFULLY_GET_EVENTS = 'Successfully get events';
+    const SUCCESSFULLY_GET_ALL_EVENTS = 'Successfully get all events';
     const SUCCESSFULLY_CREATED_EVENT = 'Successfully created event';
     const SUCCESSFULLY_UPDATED_EVENT = 'Successfully updated event';
     const SUCCESSFULLY_DELETED_EVENT = 'Successfully deleted event';
@@ -44,13 +44,15 @@ class Response
     const SUCCESSFULLY_REGISTERED_USER_FINGER_PRINT = 'Successfully Registered User finger print';
     const INCORRECT_LOGIN_INPUT = 'Please input email';
     const USER_NOT_FOUND = 'User not found';
+    const SUCCESSFULLY_GET_ALL_USERS = 'Successfully get all users';
+    const SUCCESSFULLY_GET_USER_FINGER_PRINT = 'Successfully get user finger print';
 
-    const SUCCESSFULLY_GET_EVENT_USERS = 'Successfully get event users';
-    const SUCCESSFULLY_CREATED_EVENT_USER = 'Successfully created event user';
+    const SUCCESSFULLY_GET_ALL_EVENT_USERS = 'Successfully get all event users';
+    const SUCCESSFULLY_CREATED_EVENT_USERS = 'Successfully created event user/s';
     const SUCCESSFULLY_UPDATED_EVENT_USER = 'Successfully updated event user';
     const SUCCESSFULLY_DELETED_EVENT_USER = 'Successfully deleted event user';
 
-    const SUCCESSFULLY_GET_LOGS = 'Successfully get logs';
+    const SUCCESSFULLY_GET_ALL_LOGS = 'Successfully get all logs';
     const SUCCESSFULLY_CREATED_LOG = 'Successfully created log';
 
     const GENERAL_PURPOSE = 1;

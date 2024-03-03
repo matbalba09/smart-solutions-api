@@ -20,13 +20,12 @@ class LogController extends Controller
 
     public function index()
     {
-        //
         $logs = $this->log->getAllLogs();
 
         $response = [
             'code' => Response::HTTP_SUCCESS,
             'status' => Response::SUCCESS,
-            'message' => Response::SUCCESSFULLY_GET_LOGS,
+            'message' => Response::SUCCESSFULLY_GET_ALL_LOGS,
             'count' => Log::count(),
             'data' => $logs,
         ];
@@ -36,8 +35,7 @@ class LogController extends Controller
 
     public function create(CreateLogRequest $request)
     {
-        //
-        $log = $this->log->createLog($request->event_id,$request->user_id);
+        $log = $this->log->createLog($request->event_id, $request->user_id);
 
         $response = [
             'code' => Response::HTTP_SUCCESS_POST,

@@ -16,7 +16,8 @@ class Event extends Model
 
     protected $guarded = [];
 
-    public function user(){
-        return $this->hasMany(User::class,'user_id','id');
+    public function user()
+    {
+        return $this->hasMany(User::class, 'user_id', 'id');
     }
 }

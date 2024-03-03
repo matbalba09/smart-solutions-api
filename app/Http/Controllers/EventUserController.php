@@ -19,13 +19,12 @@ class EventUserController extends Controller
 
     public function index()
     {
-        //
         $eventUsers = $this->eventUser->getAllEventUsers();
 
         $response = [
             'code' => Response::HTTP_SUCCESS,
             'status' => Response::SUCCESS,
-            'message' => Response::SUCCESSFULLY_GET_EVENT_USERS,
+            'message' => Response::SUCCESSFULLY_GET_ALL_EVENT_USERS,
             'count' => EventUser::count(),
             'data' => $eventUsers,
         ];
@@ -35,13 +34,12 @@ class EventUserController extends Controller
 
     public function getAllByEventId($event_id)
     {
-        //
         $eventUsers = $this->eventUser->getAllEventUsersByEventId($event_id);
 
         $response = [
             'code' => Response::HTTP_SUCCESS,
             'status' => Response::SUCCESS,
-            'message' => Response::SUCCESSFULLY_GET_EVENT_USERS,
+            'message' => Response::SUCCESSFULLY_GET_ALL_EVENT_USERS,
             'count' => EventUser::count(),
             'data' => $eventUsers,
         ];
@@ -49,19 +47,20 @@ class EventUserController extends Controller
         return response()->json($response, $response['code']);
     }
 
-    public function create(Request $request)
+    public function createMany(Request $request)
     {
-        //
-        $eventUser = $this->eventUser->createEventUser($request->event_id,$request->user_id);
+        $eventId = $request->input('event_id');
+        $userIds = $request->input('user_id', []);
+
+        $eventUser = $this->eventUser->createEventUsers($eventId, $userIds);
 
         $response = [
             'code' => Response::HTTP_SUCCESS_POST,
             'status' => Response::SUCCESS,
-            'message' => Response::SUCCESSFULLY_CREATED_EVENT_USER,
+            'message' => Response::SUCCESSFULLY_CREATED_EVENT_USERS,
             'data' => $eventUser,
         ];
 
         return response()->json($response, $response['code']);
     }
-
 }

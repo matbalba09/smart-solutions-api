@@ -21,13 +21,12 @@ class EventController extends Controller
 
     public function index()
     {
-        //
         $events = $this->event->getAllEvents();
 
         $response = [
             'code' => Response::HTTP_SUCCESS,
             'status' => Response::SUCCESS,
-            'message' => Response::SUCCESSFULLY_GET_EVENTS,
+            'message' => Response::SUCCESSFULLY_GET_ALL_EVENTS,
             'count' => Event::count(),
             'data' => $events,
         ];
@@ -37,13 +36,12 @@ class EventController extends Controller
 
     public function getAllbyEventType($event_type)
     {
-        //
         $events = $this->event->getAllEventsbyEventType($event_type);
 
         $response = [
             'code' => Response::HTTP_SUCCESS,
             'status' => Response::SUCCESS,
-            'message' => Response::SUCCESSFULLY_GET_EVENTS,
+            'message' => Response::SUCCESSFULLY_GET_ALL_EVENTS,
             'count' => Event::count(),
             'data' => $events,
         ];
@@ -53,8 +51,7 @@ class EventController extends Controller
 
     public function create(CreateEventRequest $request)
     {
-        //
-        $event = $this->event->createEvent($request->event_name,$request->event_type);
+        $event = $this->event->createEvent($request->event_name, $request->event_type);
 
         $response = [
             'code' => Response::HTTP_SUCCESS_POST,
@@ -68,8 +65,7 @@ class EventController extends Controller
 
     public function update(UpdateEventRequest $request, $id)
     {
-        //
-        $event = $this->event->updateEvent($request->event_name,$request->event_type,$id);
+        $event = $this->event->updateEvent($request->event_name, $request->event_type, $id);
 
         $response = [
             'code' => Response::HTTP_SUCCESS,
@@ -83,7 +79,6 @@ class EventController extends Controller
 
     public function delete($id)
     {
-        //
         $this->event->deleteEvent($id);
 
         $response = [

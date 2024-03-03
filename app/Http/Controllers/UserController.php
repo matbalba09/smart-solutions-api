@@ -129,7 +129,7 @@ class UserController extends Controller
             'code' => Response::HTTP_SUCCESS,
             'status' => Response::SUCCESS,
             'message' => Response::SUCCESSFULLY_REGISTERED_USER_FINGER_PRINT,
-            'data' => $user,
+            'user' => $user,
         ];
 
         return response()->json($response, $response['code']);

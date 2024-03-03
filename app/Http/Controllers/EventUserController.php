@@ -10,16 +10,16 @@ use Illuminate\Http\Request;
 
 class EventUserController extends Controller
 {
-    private IEventUserRepository $eventUser;
+    private IEventUserRepository $eventUserRepository;
 
-    public function __construct(IEventUserRepository $eventUser)
+    public function __construct(IEventUserRepository $eventUserRepository)
     {
-        $this->eventUser = $eventUser;
+        $this->eventUserRepository = $eventUserRepository;
     }
 
     public function index()
     {
-        $eventUsers = $this->eventUser->getAllEventUsers();
+        $eventUsers = $this->eventUserRepository->getAllEventUsers();
 
         $response = [
             'code' => Response::HTTP_SUCCESS,
@@ -34,7 +34,7 @@ class EventUserController extends Controller
 
     public function getAllByEventId($event_id)
     {
-        $eventUsers = $this->eventUser->getAllEventUsersByEventId($event_id);
+        $eventUsers = $this->eventUserRepository->getAllEventUsersByEventId($event_id);
 
         $response = [
             'code' => Response::HTTP_SUCCESS,
@@ -52,7 +52,7 @@ class EventUserController extends Controller
         $eventId = $request->input('event_id');
         $userIds = $request->input('user_id');
 
-        $eventUser = $this->eventUser->createEventUsers($eventId, $userIds);
+        $eventUser = $this->eventUserRepository->createEventUsers($eventId, $userIds);
 
         $response = [
             'code' => Response::HTTP_SUCCESS_POST,

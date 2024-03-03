@@ -57,8 +57,7 @@ class UserController extends Controller
         $response = [
             'code' => Response::HTTP_SUCCESS,
             'status' => Response::SUCCESS,
-            'message' => Response::SUCCESSFULLY_GET_ALL_USERS,
-            'count' => User::count(),
+            'message' => Response::SUCCESSFULLY_GET_USER,
             'data' => $user,
         ];
 

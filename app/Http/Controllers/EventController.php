@@ -12,16 +12,16 @@ use Illuminate\Http\Request;
 
 class EventController extends Controller
 {
-    private IEventRepository $event;
+    private IEventRepository $eventRepository;
 
-    public function __construct(IEventRepository $event)
+    public function __construct(IEventRepository $eventRepository)
     {
-        $this->event = $event;
+        $this->eventRepository = $eventRepository;
     }
 
     public function index()
     {
-        $events = $this->event->getAllEvents();
+        $events = $this->eventRepository->getAllEvents();
 
         $response = [
             'code' => Response::HTTP_SUCCESS,
@@ -36,7 +36,7 @@ class EventController extends Controller
 
     public function getAllbyEventType($event_type)
     {
-        $events = $this->event->getAllEventsbyEventType($event_type);
+        $events = $this->eventRepository->getAllEventsbyEventType($event_type);
 
         $response = [
             'code' => Response::HTTP_SUCCESS,
@@ -51,7 +51,7 @@ class EventController extends Controller
 
     public function create(CreateEventRequest $request)
     {
-        $event = $this->event->createEvent($request->event_name, $request->event_type);
+        $event = $this->eventRepository->createEvent($request->event_name, $request->event_type);
 
         $response = [
             'code' => Response::HTTP_SUCCESS_POST,
@@ -65,7 +65,7 @@ class EventController extends Controller
 
     public function update(UpdateEventRequest $request, $id)
     {
-        $event = $this->event->updateEvent($request->event_name, $request->event_type, $id);
+        $event = $this->eventRepository->updateEvent($request->event_name, $request->event_type, $id);
 
         $response = [
             'code' => Response::HTTP_SUCCESS,
@@ -79,7 +79,7 @@ class EventController extends Controller
 
     public function delete($id)
     {
-        $this->event->deleteEvent($id);
+        $this->eventRepository->deleteEvent($id);
 
         $response = [
             'code' => Response::HTTP_SUCCESS_NO_RETURN,

@@ -25,10 +25,11 @@ Route::prefix('v1')->group(function () {
 
     Route::get('Heartbeat', [HeartbeatController::class, 'Heartbeat']);
 
+    Route::post('register', [UserController::class, 'register']);
+    Route::post('login', [UserController::class, 'login']);
+    
     Route::prefix('user')->group(function () {
         Route::get('/', [UserController::class, 'index']);
-        Route::post('login', [UserController::class, 'login']);
-        Route::post('register', [UserController::class, 'register']);
         Route::put('registerUserFp/{id}', [UserController::class, 'registerUserFp']);
         Route::get('getUserFpByUserId/{id}', [UserController::class, 'getUserFpByUserId']);
         Route::get('getUserByName/{name}', [UserController::class, 'getUserByName']);

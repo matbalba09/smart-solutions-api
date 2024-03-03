@@ -44,8 +44,8 @@ class UserController extends Controller
 
     public function login(Request $request)
     {
-        if ($request->has('fp_users')) {
-            $user = User::where('fp_users', $request->fp_users)->first();
+        if ($request->has('fp_user')) {
+            $user = User::where('fp_user', $request->fp_user)->first();
             if (!$user) {
                 $response = [
                     'code' => Response::HTTP_NOT_FOUND,

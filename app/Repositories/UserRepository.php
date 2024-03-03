@@ -15,6 +15,12 @@ class UserRepository implements IUserRepository
         return $users;
     }
 
+    function getUserById($id)
+    {
+        $user = User::findOrFail($id);
+        return $user;
+    }
+
     function getUserByEmail($email)
     {
         $user = User::where('email', $email)->first();

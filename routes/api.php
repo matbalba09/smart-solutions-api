@@ -30,6 +30,7 @@ Route::prefix('v1')->group(function () {
     
     Route::prefix('user')->group(function () {
         Route::get('/', [UserController::class, 'index']);
+        Route::get('getUserById/{id}', [UserController::class, 'getUserById']);
         Route::put('registerUserFp/{id}', [UserController::class, 'registerUserFp']);
         Route::get('getUserFpByUserId/{id}', [UserController::class, 'getUserFpByUserId']);
         Route::get('getUserByName/{name}', [UserController::class, 'getUserByName']);

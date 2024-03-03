@@ -42,6 +42,29 @@ class UserController extends Controller
         return response()->json($response, $response['code']);
     }
 
+    public function getUserById($id)
+    {
+        $user = $this->userRepository->getUserById($id);
+
+        if (!$user) {
+            $response = [
+                'code' => Response::HTTP_NOT_FOUND,
+                'status' => Response::FAIL,
+                'message' => Response::USER_NOT_FOUND,
+            ];
+        }
+
+        $response = [
+            'code' => Response::HTTP_SUCCESS,
+            'status' => Response::SUCCESS,
+            'message' => Response::SUCCESSFULLY_GET_ALL_USERS,
+            'count' => User::count(),
+            'data' => $user,
+        ];
+
+        return response()->json($response, $response['code']);
+    }
+
     public function login(Request $request)
     {
         if ($request->has('fp_user')) {

@@ -132,7 +132,7 @@ class UserController extends Controller
             'sr_code' => $request->sr_code,
             'year_level' => $request->year_level,
             'department' => $request->department,
-            'email' => $request->email,
+            'gsuite_email' => $request->email,
             'password' => $request->password,
             ''
         ]);

@@ -11,16 +11,16 @@ use Illuminate\Http\Request;
 
 class LogController extends Controller
 {
-    private ILogRepository $log;
+    private ILogRepository $logRepository;
 
-    public function __construct(ILogRepository $log)
+    public function __construct(ILogRepository $logRepository)
     {
-        $this->log = $log;
+        $this->logRepository = $logRepository;
     }
 
     public function index()
     {
-        $logs = $this->log->getAllLogs();
+        $logs = $this->logRepository->getAllLogs();
 
         $response = [
             'code' => Response::HTTP_SUCCESS,
@@ -35,7 +35,7 @@ class LogController extends Controller
 
     public function create(CreateLogRequest $request)
     {
-        $log = $this->log->createLog($request->event_id, $request->user_id);
+        $log = $this->logRepository->createLog($request->event_id, $request->user_id);
 
         $response = [
             'code' => Response::HTTP_SUCCESS_POST,

@@ -45,6 +45,7 @@ class Response
     const INCORRECT_LOGIN_INPUT = 'Please input email';
     const USER_NOT_FOUND = 'User not found';
     const SUCCESSFULLY_GET_ALL_USERS = 'Successfully get all users';
+    const SUCCESSFULLY_GET_USER = 'Successfully get all user';
     const SUCCESSFULLY_GET_USER_FINGER_PRINT = 'Successfully get user finger print';
 
     const SUCCESSFULLY_GET_ALL_EVENT_USERS = 'Successfully get all event users';

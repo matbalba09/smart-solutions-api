@@ -11,19 +11,22 @@ class UserRepository implements IUserRepository
 
     function getAllUsers()
     {
-        $users = User::get();
+        $users = User::select('id', 'name', 'sr_code', 'year_level', 'department', 'gsuite_email', 'created_at', 'updated_at')
+        ->get();
         return $users;
     }
 
     function getUserById($id)
     {
-        $user = User::findOrFail($id);
+        $user = User::select('id', 'name', 'sr_code', 'year_level', 'department', 'gsuite_email', 'created_at', 'updated_at')
+        ->findOrFail($id);
         return $user;
     }
 
     function getUserByEmail($email)
     {
-        $user = User::where('email', $email)->first();
+        $user = User::select('id', 'name', 'sr_code', 'year_level', 'department', 'gsuite_email', 'created_at', 'updated_at')
+        ->where('email', $email)->first();
         return $user;
     }
 
@@ -46,7 +49,8 @@ class UserRepository implements IUserRepository
 
     function getUserByName($name)
     {
-        $users = User::where('name', 'LIKE', '%' . $name . '%')->get();
+        $users = User::select('id', 'name', 'sr_code', 'year_level', 'department', 'gsuite_email', 'created_at', 'updated_at')
+        ->where('name', 'LIKE', '%' . $name . '%')->get();
         return $users;
     }
 }

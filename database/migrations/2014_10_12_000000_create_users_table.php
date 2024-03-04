@@ -14,8 +14,11 @@ return new class extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('name')->nullable();
+            $table->string('sr_code')->unique()->nullable();
+            $table->string('year_level')->nullable();
+            $table->string('department')->nullable();
+            $table->string('gsuite_email')->unique()->nullable();
             $table->text('fp_user')->nullable();
-            $table->string('email')->unique()->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password')->nullable();
             $table->rememberToken();

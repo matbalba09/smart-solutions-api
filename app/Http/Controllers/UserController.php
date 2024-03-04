@@ -130,8 +130,12 @@ class UserController extends Controller
 
         $user = User::create([
             'name' => $request->name,
+            'sr_code' => $request->sr_code,
+            'year_level' => $request->year_level,
+            'department' => $request->department,
             'email' => $request->email,
             'password' => $request->password,
+            ''
         ]);
 
         $response = [

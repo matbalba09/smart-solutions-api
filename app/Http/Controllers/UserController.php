@@ -117,14 +117,23 @@ class UserController extends Controller
 
     public function register(Request $request)
     {
-        $existingUser = $this->userRepository->getUserByEmail($request->email);
+        $existingUserEmail = $this->userRepository->getUserByEmail($request->email);
+        $existingUserSrCode = $this->userRepository->getUserBySrCode($request->sr_code);
 
-        if ($existingUser) {
+        if ($existingUserEmail) {
             $response = [
                 'code' => Response::HTTP_CONFLICT,
                 'status' => Response::FAIL,
                 'message' => Response::INVALID_EMAIL,
             ];
+            return response()->json($response, $response['code']);
+        } elseif ($existingUserSrCode) {
+            $response = [
+                'code' => Response::HTTP_CONFLICT,
+                'status' => Response::FAIL,
+                'message' => Response::INVALID_SR_CODE,
+            ];
+            return response()->json($response, $response['code']);
         }
 
         $user = User::create([
@@ -133,8 +142,7 @@ class UserController extends Controller
             'year_level' => $request->year_level,
             'department' => $request->department,
             'gsuite_email' => $request->email,
-            'password' => $request->password,
-            ''
+            'password' => $request->password
         ]);
 
         $response = [

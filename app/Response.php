@@ -47,6 +47,7 @@ class Response
     const SUCCESSFULLY_GET_ALL_USERS = 'Successfully get all users';
     const SUCCESSFULLY_GET_USER = 'Successfully get all user';
     const SUCCESSFULLY_GET_USER_FINGER_PRINT = 'Successfully get user finger print';
+    const INVALID_SR_CODE = 'SR code already exists';
 
     const SUCCESSFULLY_GET_ALL_EVENT_USERS = 'Successfully get all event users';
     const SUCCESSFULLY_CREATED_EVENT_USERS = 'Successfully created event user/s';

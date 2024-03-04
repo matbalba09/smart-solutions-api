@@ -19,7 +19,10 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
-        'email',
+        'sr_code',
+        'year_level',
+        'department',
+        'gsuite_email',
         'password',
         'fp_user',
     ];

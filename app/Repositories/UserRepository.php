@@ -26,7 +26,14 @@ class UserRepository implements IUserRepository
     function getUserByEmail($email)
     {
         $user = User::select('id', 'name', 'sr_code', 'year_level', 'department', 'gsuite_email', 'created_at', 'updated_at')
-        ->where('email', $email)->first();
+        ->where('gsuite_email', $email)->first();
+        return $user;
+    }
+
+    function getUserBySrCode($sr_code)
+    {
+        $user = User::select('id', 'name', 'sr_code', 'year_level', 'department', 'gsuite_email', 'created_at', 'updated_at')
+        ->where('sr_code', $sr_code)->first();
         return $user;
     }
 

@@ -16,7 +16,23 @@ class EventUserRepository implements IEventUserRepository
 
     function getAllEventUsersByEventId($event_id)
     {
-        $eventUsers = EventUser::where('event_id', $event_id)->get();
+        // $eventUsers = EventUser::with(['user' => function ($query) {
+        //     $query->select('id', 'name', 'sr_code', 'year_level', 'department', 'gsuite_email', 'created_at', 'updated_at');
+        // }])
+        //     ->where('event_id', $event_id)
+        //     ->get();
+        // return $eventUsers;
+        $eventUsers = EventUser::with(['user' => function ($query) {
+            $query->select('id', 'name', 'sr_code', 'year_level', 'department', 'gsuite_email', 'created_at', 'updated_at');
+        }])
+            ->selectRaw('event_users.*, IF(logs.id IS NOT NULL, TRUE, FALSE) AS isPresent')
+            ->leftJoin('logs', function ($join) use ($event_id) {
+                $join->on('event_users.user_id', '=', 'logs.user_id')
+                    ->where('logs.event_id', '=', $event_id);
+            })
+            ->where('event_users.event_id', $event_id) // Specify the table for event_id
+            ->get();
+
         return $eventUsers;
     }
 
@@ -24,8 +40,7 @@ class EventUserRepository implements IEventUserRepository
     {
         $eventUsers = [];
 
-        foreach ($user_ids as $user_id)
-        {
+        foreach ($user_ids as $user_id) {
             $eventUser = EventUser::create([
                 'event_id' => $event_id,
                 'user_id' => $user_id,
@@ -33,7 +48,23 @@ class EventUserRepository implements IEventUserRepository
 
             $eventUsers[] = $eventUser;
         }
-
         return $eventUsers;
+    }
+
+    function getAllFpUsersByEventId($event_id)
+    {
+        $eventUsers = EventUser::with(['user' => function ($query) {
+            $query->select('id', 'fp_user');
+        }])
+            ->where('event_id', $event_id)
+            ->get()
+            ->map(function ($eventUser) {
+                return [
+                    'id' => $eventUser->user->id,
+                    'fp_user' => $eventUser->user->fp_user,
+                ];
+            });
+
+        return $eventUsers->toArray();
     }
 }

@@ -33,6 +33,7 @@ class Response
     const IS_AN_EMAIL = 'must be an email';
 
     const SUCCESSFULLY_GET_ALL_EVENTS = 'Successfully get all events';
+    const SUCCESSFULLY_GET_EVENT = 'Successfully get event';
     const SUCCESSFULLY_CREATED_EVENT = 'Successfully created event';
     const SUCCESSFULLY_UPDATED_EVENT = 'Successfully updated event';
     const SUCCESSFULLY_DELETED_EVENT = 'Successfully deleted event';
@@ -48,6 +49,7 @@ class Response
     const SUCCESSFULLY_GET_USER = 'Successfully get all user';
     const SUCCESSFULLY_GET_USER_FINGER_PRINT = 'Successfully get user finger print';
     const INVALID_SR_CODE = 'SR code already exists';
+    const SUCCESSFULLY_GET_ALL_USER_FINGER_PRINTS = 'Successfully get all user finger prints';
 
     const SUCCESSFULLY_GET_ALL_EVENT_USERS = 'Successfully get all event users';
     const SUCCESSFULLY_CREATED_EVENT_USERS = 'Successfully created event user/s';

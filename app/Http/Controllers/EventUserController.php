@@ -63,4 +63,19 @@ class EventUserController extends Controller
 
         return response()->json($response, $response['code']);
     }
+
+    public function getAllFpUsersByEventId($event_id)
+    {
+        $eventUsers = $this->eventUserRepository->getAllFpUsersByEventId($event_id);
+
+        $response = [
+            'code' => Response::HTTP_SUCCESS,
+            'status' => Response::SUCCESS,
+            'message' => Response::SUCCESSFULLY_GET_ALL_USER_FINGER_PRINTS,
+            'count' => EventUser::count(),
+            'data' => $eventUsers,
+        ];
+
+        return response()->json($response, $response['code']);
+    }
 }

@@ -15,6 +15,12 @@ class EventRepository implements IEventRepository
         return $events;
     }
 
+    function getEventById($id)
+    {
+        $event = Event::findOrFail($id);
+        return $event;
+    }
+
     function getAllEventsbyEventType($event_type)
     {
         $events = Event::where('event_type', $event_type)->get();

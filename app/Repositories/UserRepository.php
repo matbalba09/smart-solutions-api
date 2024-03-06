@@ -60,4 +60,18 @@ class UserRepository implements IUserRepository
         ->where('name', 'LIKE', '%' . $name . '%')->get();
         return $users;
     }
+
+    function getAllUserByDepartment($department)
+    {
+        $users = User::select('id', 'name', 'sr_code', 'year_level', 'department', 'gsuite_email', 'created_at', 'updated_at')
+        ->where('department', $department)->get();
+        return $users;
+    }
+    
+    function getAllUserByYearLevel($year_level)
+    {
+        $users = User::select('id', 'name', 'sr_code', 'year_level', 'department', 'gsuite_email', 'created_at', 'updated_at')
+        ->where('year_level', $year_level)->get();
+        return $users;
+    }
 }

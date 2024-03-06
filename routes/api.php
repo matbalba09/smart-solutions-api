@@ -30,14 +30,17 @@ Route::prefix('v1')->group(function () {
     
     Route::prefix('user')->group(function () {
         Route::get('/', [UserController::class, 'index']);
-        Route::get('getUserById/{id}', [UserController::class, 'getUserById']);
+        Route::get('{id}', [UserController::class, 'getUserById']);
         Route::put('registerUserFp/{id}', [UserController::class, 'registerUserFp']);
         Route::get('getUserFpByUserId/{id}', [UserController::class, 'getUserFpByUserId']);
         Route::get('getUserByName/{name}', [UserController::class, 'getUserByName']);
+        Route::get('getAllUserByDepartment/{department}', [UserController::class, 'getAllUserByDepartment']);
+        Route::get('getAllUserByYearLevel/{year_level}', [UserController::class, 'getAllUserByYearLevel']);
     });
 
     Route::prefix('event')->group(function () {
         Route::get('/', [EventController::class, 'index']);
+        Route::get('{id}', [EventController::class, 'getEventById']);
         Route::get('getAllbyEventType/{event_type}', [EventController::class, 'getAllbyEventType']);
         Route::post('create', [EventController::class, 'create']);
         Route::put('update/{id}', [EventController::class, 'update']);
@@ -48,6 +51,7 @@ Route::prefix('v1')->group(function () {
         Route::get('/', [EventUserController::class, 'index']);
         Route::get('getAllByEventId/{id}', [EventUserController::class, 'getAllByEventId']);
         Route::post('create', [EventUserController::class, 'createMany']);
+        Route::get('getAllFpUsersByEventId/{id}', [EventUserController::class, 'getAllFpUsersByEventId']);
     });
 
     Route::prefix('log')->group(function () {

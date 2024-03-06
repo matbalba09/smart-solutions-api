@@ -11,4 +11,6 @@ interface IUserRepository
     function registerUserFp($fp_user, $id);
     function getUserFpByUserId($id);
     function getUserByName($name);
+    function getAllUserByDepartment($department);
+    function getAllUserByYearLevel($year_level);
 }

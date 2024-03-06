@@ -214,4 +214,50 @@ class UserController extends Controller
 
         return response()->json($response, $response['code']);
     }
+
+    public function getAllUserByDepartment($department)
+    {
+        $users = $this->userRepository->getAllUserByDepartment($department);
+
+        if ($users->isEmpty()) {
+            $response = [
+                'code' => Response::HTTP_NOT_FOUND,
+                'status' => Response::FAIL,
+                'message' => Response::USER_NOT_FOUND,
+            ];
+            return response()->json($response, $response['code']);
+        }
+
+        $response = [
+            'code' => Response::HTTP_SUCCESS,
+            'status' => Response::SUCCESS,
+            'message' => Response::SUCCESSFULLY_GET_ALL_USERS,
+            'data' => $users,
+        ];
+
+        return response()->json($response, $response['code']);
+    }
+
+    public function getAllUserByYearLevel($year_level)
+    {
+        $users = $this->userRepository->getAllUserByYearLevel($year_level);
+
+        if ($users->isEmpty()) {
+            $response = [
+                'code' => Response::HTTP_NOT_FOUND,
+                'status' => Response::FAIL,
+                'message' => Response::USER_NOT_FOUND,
+            ];
+            return response()->json($response, $response['code']);
+        }
+
+        $response = [
+            'code' => Response::HTTP_SUCCESS,
+            'status' => Response::SUCCESS,
+            'message' => Response::SUCCESSFULLY_GET_ALL_USERS,
+            'data' => $users,
+        ];
+
+        return response()->json($response, $response['code']);
+    }
 }

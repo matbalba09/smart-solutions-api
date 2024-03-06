@@ -34,6 +34,20 @@ class EventController extends Controller
         return response()->json($response, $response['code']);
     }
 
+    public function getEventById($id)
+    {
+        $event = $this->eventRepository->getEventById($id);
+
+        $response = [
+            'code' => Response::HTTP_SUCCESS,
+            'status' => Response::SUCCESS,
+            'message' => Response::SUCCESSFULLY_GET_EVENT,
+            'data' => $event,
+        ];
+
+        return response()->json($response, $response['code']);
+    }
+
     public function getAllbyEventType($event_type)
     {
         $events = $this->eventRepository->getAllEventsbyEventType($event_type);

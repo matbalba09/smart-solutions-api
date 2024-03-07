@@ -65,7 +65,12 @@ class EventController extends Controller
 
     public function create(CreateEventRequest $request)
     {
-        $event = $this->eventRepository->createEvent($request->event_name, $request->event_type);
+        $event = $this->eventRepository->createEvent(
+            $request->event_name,
+            $request->event_type,
+            $request->start_date,
+            $request->end_date
+        );
 
         $response = [
             'code' => Response::HTTP_SUCCESS_POST,
@@ -79,7 +84,11 @@ class EventController extends Controller
 
     public function update(UpdateEventRequest $request, $id)
     {
-        $event = $this->eventRepository->updateEvent($request->event_name, $request->event_type, $id);
+        $event = $this->eventRepository->updateEvent(
+            $request->event_name,
+            $request->event_type,
+            $id
+        );
 
         $response = [
             'code' => Response::HTTP_SUCCESS,

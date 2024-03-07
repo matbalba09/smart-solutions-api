@@ -24,6 +24,8 @@ class UpdateEventRequest extends FormRequest
         return [
             'event_name' => 'nullable|string',
             'event_type' => 'nullable|integer',
+            'start_date' => 'nullable|string',
+            'end_date' => 'nullable|string',
         ];
     }
 }

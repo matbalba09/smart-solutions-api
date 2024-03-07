@@ -27,11 +27,13 @@ class EventRepository implements IEventRepository
         return $events;
     }
 
-    function createEvent($event_name, $event_type)
+    function createEvent($event_name, $event_type, $start_date, $end_date)
     {
         $event = Event::create([
             'event_name' => $event_name,
             'event_type' => $event_type,
+            'start_date' => $start_date,
+            'end_date' => $end_date,
         ]);
 
         return $event;

@@ -12,6 +12,8 @@ class Event extends Model
     protected $fillable = [
         'event_name',
         'event_type',
+        'start_date',
+        'end_date',
     ];
 
     protected $guarded = [];

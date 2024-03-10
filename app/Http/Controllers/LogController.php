@@ -46,4 +46,36 @@ class LogController extends Controller
 
         return response()->json($response, $response['code']);
     }
+
+    public function getByEventIdAndUserId($event_id, $user_id)
+    {
+        $log = $this->logRepository->getLogByEventIdAndUserId($event_id, $user_id);
+
+        if ($log != null) {
+            if (empty($log)) {
+                $response = [
+                    'code' => Response::HTTP_NOT_FOUND,
+                    'status' => Response::FAIL,
+                    'message' => Response::LOG_NOT_FOUND,
+                ];
+                return response()->json($response, $response['code']);
+            } else {
+                $response = [
+                    'code' => Response::HTTP_SUCCESS_POST,
+                    'status' => Response::SUCCESS,
+                    'message' => Response::SUCCESSFULLY_GET_LOG,
+                    'data' => $log,
+                ];
+
+                return response()->json($response, $response['code']);
+            }
+        } else {
+            $response = [
+                'code' => Response::HTTP_NOT_FOUND,
+                'status' => Response::FAIL,
+                'message' => Response::LOG_NOT_FOUND,
+            ];
+            return response()->json($response, $response['code']);
+        }
+    }
 }

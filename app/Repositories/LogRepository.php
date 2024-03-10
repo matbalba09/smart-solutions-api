@@ -32,4 +32,12 @@ class LogRepository implements ILogRepository
 
         return $log;
     }
+
+    function getLogByEventIdAndUserId($event_id, $user_id,)
+    {
+        $log = Log::where('event_id', $event_id)
+            ->where('user_id', $user_id)
+            ->first();
+        return $log;
+    }
 }

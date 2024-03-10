@@ -57,7 +57,9 @@ class Response
     const SUCCESSFULLY_DELETED_EVENT_USER = 'Successfully deleted event user';
 
     const SUCCESSFULLY_GET_ALL_LOGS = 'Successfully get all logs';
+    const SUCCESSFULLY_GET_LOG = 'Successfully get log';
     const SUCCESSFULLY_CREATED_LOG = 'Successfully created log';
+    const LOG_NOT_FOUND = 'Log not found';
 
     const GENERAL_PURPOSE = 1;
     const EVENT = 2;

@@ -56,7 +56,7 @@ class LogController extends Controller
                 'code' => Response::HTTP_SUCCESS,
                 'status' => Response::SUCCESS,
                 'message' => Response::LOG_NOT_FOUND,
-                'data' => [],
+                'data' => (object) [],
             ];
             return response()->json($response, $response['code']);
         }

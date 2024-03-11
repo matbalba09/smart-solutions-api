@@ -77,10 +77,11 @@ class LogController extends Controller
 
         if (count($logs) <= 0) {
             $response = [
-                'code' => Response::HTTP_NOT_FOUND,
-                'status' => Response::FAIL,
+                'code' => Response::HTTP_SUCCESS,
+                'status' => Response::SUCCESS,
                 'message' => Response::LOG_NOT_FOUND,
                 'count' => Log::count(),
+                'data' => [],
             ];
         } else {
             $response = [

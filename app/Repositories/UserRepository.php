@@ -74,4 +74,10 @@ class UserRepository implements IUserRepository
         ->where('year_level', $year_level)->get();
         return $users;
     }
+
+    function getAllUserFpUsers()
+    {
+        $users = User::select('id', 'fp_user')->get();
+        return $users;
+    }
 }

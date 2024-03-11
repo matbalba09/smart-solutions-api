@@ -16,12 +16,6 @@ class EventUserRepository implements IEventUserRepository
 
     function getAllEventUsersByEventId($event_id)
     {
-        // $eventUsers = EventUser::with(['user' => function ($query) {
-        //     $query->select('id', 'name', 'sr_code', 'year_level', 'department', 'gsuite_email', 'created_at', 'updated_at');
-        // }])
-        //     ->where('event_id', $event_id)
-        //     ->get();
-        // return $eventUsers;
         $eventUsers = EventUser::with(['user' => function ($query) {
             $query->select('id', 'name', 'sr_code', 'year_level', 'department', 'gsuite_email', 'created_at', 'updated_at');
         }])
@@ -30,7 +24,7 @@ class EventUserRepository implements IEventUserRepository
                 $join->on('event_users.user_id', '=', 'logs.user_id')
                     ->where('logs.event_id', '=', $event_id);
             })
-            ->where('event_users.event_id', $event_id) // Specify the table for event_id
+            ->where('event_users.event_id', $event_id)
             ->get();
 
         return $eventUsers;

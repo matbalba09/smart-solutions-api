@@ -283,4 +283,27 @@ class UserController extends Controller
 
         return response()->json($response, $response['code']);
     }
+
+    public function getAllUserFpUsers()
+    {
+        // return 'test';
+        $users = $this->userRepository->getAllUserFpUsers();
+        if ($users->isEmpty()) {
+            $response = [
+                'code' => Response::HTTP_NOT_FOUND,
+                'status' => Response::FAIL,
+                'message' => Response::USER_NOT_FOUND,
+            ];
+        }
+
+        $response = [
+            'code' => Response::HTTP_SUCCESS,
+            'status' => Response::SUCCESS,
+            'message' => Response::SUCCESSFULLY_GET_ALL_USER_FINGER_PRINTS,
+            'count' => User::count(),
+            'data' => $users,
+        ];
+
+        return response()->json($response, $response['code']);
+    }
 }

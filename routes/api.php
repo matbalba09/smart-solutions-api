@@ -2,11 +2,9 @@
 
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\EventUserController;
-use App\Http\Controllers\GeneralPurposeController;
 use App\Http\Controllers\HeartbeatController;
 use App\Http\Controllers\LogController;
 use App\Http\Controllers\UserController;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 
@@ -30,6 +28,7 @@ Route::prefix('v1')->group(function () {
     
     Route::prefix('user')->group(function () {
         Route::get('/', [UserController::class, 'index']);
+        Route::get('getAllUserFp', [UserController::class, 'getAllUserFpUsers']);
         Route::get('{id}', [UserController::class, 'getUserById']);
         Route::put('registerUserFp/{id}', [UserController::class, 'registerUserFp']);
         Route::get('getUserFpByUserId/{id}', [UserController::class, 'getUserFpByUserId']);

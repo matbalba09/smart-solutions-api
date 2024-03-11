@@ -13,4 +13,5 @@ interface IUserRepository
     function getUserByName($name);
     function getAllUserByDepartment($department);
     function getAllUserByYearLevel($year_level);
+    function getAllUserFpUsers();
 }

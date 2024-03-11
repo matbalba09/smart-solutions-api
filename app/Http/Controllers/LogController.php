@@ -70,4 +70,28 @@ class LogController extends Controller
 
         return response()->json($response, $response['code']);
     }
+
+    public function getAllByEventId($event_id)
+    {
+        $logs = $this->logRepository->getAllLogsByEventId($event_id);
+
+        if (count($logs) <= 0) {
+            $response = [
+                'code' => Response::HTTP_NOT_FOUND,
+                'status' => Response::FAIL,
+                'message' => Response::LOG_NOT_FOUND,
+                'count' => Log::count(),
+            ];
+        } else {
+            $response = [
+                'code' => Response::HTTP_SUCCESS,
+                'status' => Response::SUCCESS,
+                'message' => Response::SUCCESSFULLY_GET_ALL_LOGS,
+                'count' => Log::count(),
+                'data' => $logs,
+            ];
+        }
+
+        return response()->json($response, $response['code']);
+    }
 }

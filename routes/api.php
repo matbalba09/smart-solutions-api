@@ -58,6 +58,7 @@ Route::prefix('v1')->group(function () {
         Route::get('/', [LogController::class, 'index']);
         Route::post('create', [LogController::class, 'create']);
         Route::get('getByEventIdAndUserId/{event_id}/{user_id}', [LogController::class, 'getByEventIdAndUserId']);
+        Route::get('getAllByEventId/{event_id}', [LogController::class, 'getAllByEventId']);
     });
 
     Route::group(['middleware' => ['auth:sanctum']], function () {

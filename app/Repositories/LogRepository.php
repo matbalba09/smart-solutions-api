@@ -40,4 +40,10 @@ class LogRepository implements ILogRepository
             ->first();
         return $log;
     }
+
+    function getAllLogsByEventId($event_id)
+    {
+        $logs = Log::where('event_id', $event_id)->get();
+        return $logs;
+    }
 }

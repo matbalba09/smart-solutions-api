@@ -286,7 +286,6 @@ class UserController extends Controller
 
     public function getAllUserFpUsers()
     {
-        // return 'test';
         $users = $this->userRepository->getAllUserFpUsers();
         if ($users->isEmpty()) {
             $response = [

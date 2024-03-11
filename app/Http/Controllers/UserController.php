@@ -260,4 +260,27 @@ class UserController extends Controller
 
         return response()->json($response, $response['code']);
     }
+
+    public function getUserBySrCode($sr_code)
+    {
+        $user = $this->userRepository->getUserBySrCode($sr_code);
+
+        if ($user == null) {
+            $response = [
+                'code' => Response::HTTP_NOT_FOUND,
+                'status' => Response::FAIL,
+                'message' => Response::USER_NOT_FOUND,
+            ];
+            return response()->json($response, $response['code']);
+        }
+
+        $response = [
+            'code' => Response::HTTP_SUCCESS,
+            'status' => Response::SUCCESS,
+            'message' => Response::SUCCESSFULLY_GET_USER,
+            'data' => $user,
+        ];
+
+        return response()->json($response, $response['code']);
+    }
 }

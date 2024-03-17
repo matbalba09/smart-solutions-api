@@ -25,7 +25,7 @@ class EventUserRepository implements IEventUserRepository
                     ->on('logs.event_id', '=', $event_id);
             })
             ->where('event_users.event_id', $event_id)
-            ->orderByAsc('event_users.user_id')
+            ->orderBy('event_users.user_id')
             ->get();
 
         return $eventUsers;

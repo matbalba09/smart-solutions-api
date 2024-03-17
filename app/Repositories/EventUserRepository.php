@@ -22,9 +22,10 @@ class EventUserRepository implements IEventUserRepository
             ->selectRaw('event_users.*, IF(logs.id IS NOT NULL, TRUE, FALSE) AS isPresent')
             ->leftJoin('logs', function ($join) use ($event_id) {
                 $join->on('event_users.user_id', '=', 'logs.user_id')
-                    ->where('logs.event_id', '=', $event_id);
+                    ->on('logs.event_id', '=', $event_id);
             })
             ->where('event_users.event_id', $event_id)
+            ->orderByAsc('event_users.user_id')
             ->get();
 
         return $eventUsers;

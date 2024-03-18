@@ -82,7 +82,7 @@ class UserController extends Controller
                 ];
             }
         } else if ($request->has('email')) {
-            $user = User::where('email', $request->email)->first();
+            $user = User::where('gsuite_email', $request->email)->first();
 
             if ($user) {
                 if (!Hash::check($request->password, $user->password)) {

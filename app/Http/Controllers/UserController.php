@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UpdateUserRequest;
+use App\Models\Admin;
 use App\Models\User;
 use App\Repositories\Interface\IUserRepository;
 use App\Response;
@@ -67,8 +68,8 @@ class UserController extends Controller
     public function login(Request $request)
     {
         if ($request->has('fp_user')) {
-            $user = User::where('fp_user', $request->fp_user)->first();
-            if (!$user) {
+            $admin = Admin::where('fp_user', $request->fp_user)->first();
+            if (!$admin) {
                 $response = [
                     'code' => Response::HTTP_NOT_FOUND,
                     'status' => Response::FAIL,
@@ -81,11 +82,10 @@ class UserController extends Controller
                     'message' => Response::SUCCESSFULLY_LOGGED_IN,
                 ];
             }
-        } else if ($request->has('email')) {
-            $user = User::where('gsuite_email', $request->email)->first();
-
-            if ($user) {
-                if (!Hash::check($request->password, $user->password)) {
+        } else if ($request->has('username')) {
+            $admin = Admin::where('username', $request->username)->first();
+            if ($admin) {
+                if (!Hash::check($request->password, $admin->password)) {
                     $response = [
                         'code' => Response::HTTP_NOT_FOUND,
                         'status' => Response::FAIL,

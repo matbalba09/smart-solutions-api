@@ -142,7 +142,6 @@ class UserController extends Controller
             'year_level' => $request->year_level,
             'department' => $request->department,
             'gsuite_email' => $request->email,
-            'password' => $request->password
         ]);
 
         $response = [

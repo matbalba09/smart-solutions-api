@@ -308,4 +308,32 @@ class UserController extends Controller
 
         return response()->json($response, $response['code']);
     }
+
+    public function updateUser(UpdateUserRequest $request, $id)
+    {
+        $user = $this->userRepository->updateUser(
+            $request->name,
+            $request->sr_code,
+            $request->year_level,
+            $request->department,
+            $request->gsuite_email,
+            $request->password,
+            $request->fp_user,
+            $request->gender,
+            $request->mobile_number,
+            $request->branch,
+            $request->user_type,
+            $request->is_active,
+            $id
+        );
+
+        $response = [
+            'code' => Response::HTTP_SUCCESS,
+            'status' => Response::SUCCESS,
+            'message' => Response::SUCCESSFULLY_UPDATED_USER,
+            'data' => $user,
+        ];
+
+        return response()->json($response, $response['code']);
+    }
 }

@@ -29,6 +29,7 @@ class User extends Authenticatable
         'mobile_number',
         'branch',
         'user_type',
+        'is_active',
     ];
 
     /**

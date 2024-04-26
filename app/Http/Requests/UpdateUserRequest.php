@@ -22,6 +22,18 @@ class UpdateUserRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'name' => 'nullable|string',
+            'sr_code' => 'nullable|string',
+            'year_level' => 'nullable|string',
+            'department' => 'nullable|string',
+            'gsuite_email' => 'nullable|string',
+            'password' => 'nullable|string',
+            'fp_user' => 'nullable|string',
+            'gender' => 'nullable|string',
+            'mobile_number' => 'nullable|string',
+            'branch' => 'nullable|string',
+            'user_type' => 'nullable|string',
+            'is_active' => 'nullable|string',
             'fp_user' => 'nullable|string',
         ];
     }

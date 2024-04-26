@@ -11,29 +11,29 @@ class UserRepository implements IUserRepository
 
     function getAllUsers()
     {
-        $users = User::select('id', 'name', 'sr_code', 'year_level', 'department', 'gsuite_email', 'gender', 'mobile_number', 'branch', 'user_type', 'created_at', 'updated_at')
-        ->get();
+        $users = User::select('id', 'name', 'sr_code', 'year_level', 'department', 'gsuite_email', 'gender', 'mobile_number', 'branch', 'user_type', 'created_at', 'updated_at', 'is_active')
+            ->get();
         return $users;
     }
 
     function getUserById($id)
     {
-        $user = User::select('id', 'name', 'sr_code', 'year_level', 'department', 'gsuite_email',  'gender', 'mobile_number', 'branch', 'user_type', 'created_at', 'updated_at')
-        ->findOrFail($id);
+        $user = User::select('id', 'name', 'sr_code', 'year_level', 'department', 'gsuite_email',  'gender', 'mobile_number', 'branch', 'user_type', 'created_at', 'updated_at', 'is_active')
+            ->findOrFail($id);
         return $user;
     }
 
     function getUserByEmail($email)
     {
-        $user = User::select('id', 'name', 'sr_code', 'year_level', 'department', 'gsuite_email',  'gender', 'mobile_number', 'branch', 'user_type', 'created_at', 'updated_at')
-        ->where('gsuite_email', $email)->first();
+        $user = User::select('id', 'name', 'sr_code', 'year_level', 'department', 'gsuite_email',  'gender', 'mobile_number', 'branch', 'user_type', 'created_at', 'updated_at', 'is_active')
+            ->where('gsuite_email', $email)->first();
         return $user;
     }
 
     function getUserBySrCode($sr_code)
     {
-        $user = User::select('id', 'name', 'sr_code', 'year_level', 'department', 'gsuite_email',  'gender', 'mobile_number', 'branch', 'user_type', 'created_at', 'updated_at')
-        ->where('sr_code', $sr_code)->first();
+        $user = User::select('id', 'name', 'sr_code', 'year_level', 'department', 'gsuite_email',  'gender', 'mobile_number', 'branch', 'user_type', 'created_at', 'updated_at', 'is_active')
+            ->where('sr_code', $sr_code)->first();
         return $user;
     }
 
@@ -56,22 +56,22 @@ class UserRepository implements IUserRepository
 
     function getUserByName($name)
     {
-        $users = User::select('id', 'name', 'sr_code', 'year_level', 'department', 'gsuite_email',  'gender', 'mobile_number', 'branch', 'user_type', 'created_at', 'updated_at')
-        ->where('name', 'LIKE', '%' . $name . '%')->get();
+        $users = User::select('id', 'name', 'sr_code', 'year_level', 'department', 'gsuite_email',  'gender', 'mobile_number', 'branch', 'user_type', 'created_at', 'updated_at', 'is_active')
+            ->where('name', 'LIKE', '%' . $name . '%')->get();
         return $users;
     }
 
     function getAllUserByDepartment($department)
     {
-        $users = User::select('id', 'name', 'sr_code', 'year_level', 'department', 'gsuite_email',  'gender', 'mobile_number', 'branch', 'user_type', 'created_at', 'updated_at')
-        ->where('department', $department)->get();
+        $users = User::select('id', 'name', 'sr_code', 'year_level', 'department', 'gsuite_email',  'gender', 'mobile_number', 'branch', 'user_type', 'created_at', 'updated_at', 'is_active')
+            ->where('department', $department)->get();
         return $users;
     }
-    
+
     function getAllUserByYearLevel($year_level)
     {
-        $users = User::select('id', 'name', 'sr_code', 'year_level', 'department', 'gsuite_email',  'gender', 'mobile_number', 'branch', 'user_type', 'created_at', 'updated_at')
-        ->where('year_level', $year_level)->get();
+        $users = User::select('id', 'name', 'sr_code', 'year_level', 'department', 'gsuite_email',  'gender', 'mobile_number', 'branch', 'user_type', 'created_at', 'updated_at', 'is_active')
+            ->where('year_level', $year_level)->get();
         return $users;
     }
 
@@ -79,5 +79,27 @@ class UserRepository implements IUserRepository
     {
         $users = User::select('id', 'fp_user')->get();
         return $users;
+    }
+
+    function updateUser($name, $sr_code, $year_level, $department, $gsuite_email, $password, $fp_user, $gender, $mobile_number, $branch, $user_type, $is_active, $id)
+    {
+        $event = User::findOrFail($id);
+
+        $event->name = $name;
+        $event->sr_code = $sr_code;
+        $event->year_level = $year_level;
+        $event->department = $department;
+        $event->gsuite_email = $gsuite_email;
+        $event->password = $password;
+        $event->fp_user = $fp_user;
+        $event->gender = $gender;
+        $event->mobile_number = $mobile_number;
+        $event->branch = $branch;
+        $event->user_type = $user_type;
+        $event->is_active = $is_active;
+        $event->updated_at = Carbon::now();
+        $event->save();
+
+        return $event;
     }
 }

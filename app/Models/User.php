@@ -25,6 +25,10 @@ class User extends Authenticatable
         'gsuite_email',
         'password',
         'fp_user',
+        'gender',
+        'mobile_number',
+        'branch',
+        'user_type',
     ];
 
     /**

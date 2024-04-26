@@ -142,6 +142,10 @@ class UserController extends Controller
             'year_level' => $request->year_level,
             'department' => $request->department,
             'gsuite_email' => $request->email,
+            'gender' => $request->gender,
+            'mobile_number' => $request->mobile_number,
+            'branch' => $request->branch,
+            'user_type' => $request->user_type,
         ]);
 
         $response = [

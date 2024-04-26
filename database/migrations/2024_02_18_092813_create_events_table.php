@@ -15,6 +15,9 @@ return new class extends Migration
             $table->id();
             $table->string('event_name')->nullable();
             $table->integer('event_type')->nullable();
+            $table->string('attendance_type')->nullable();
+            $table->string('organizer')->nullable();
+            $table->string('venue')->nullable();
             $table->string('start_date')->nullable();
             $table->string('end_date')->nullable();
             $table->timestamps();

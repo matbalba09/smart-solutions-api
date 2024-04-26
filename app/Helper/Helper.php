@@ -2,6 +2,7 @@
 
 namespace App\Helper;
 
+use DateTimeZone;
 use Illuminate\Support\Carbon;
 
 class Helper
@@ -28,5 +29,6 @@ class Helper
     public static function getDateNow()
     {
         return Carbon::now()->format('Y-m-d H:i:s');
+        // return Carbon::now()->addHours(7)->format('Y-m-d H:i:s');
     }
 }

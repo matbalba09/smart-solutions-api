@@ -14,6 +14,9 @@ class Event extends Model
         'event_type',
         'start_date',
         'end_date',
+        'attendance_type',
+        'organizer',
+        'venue',
     ];
 
     protected $guarded = [];

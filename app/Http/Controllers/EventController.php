@@ -8,6 +8,7 @@ use App\Http\Requests\UpdateEventRequest;
 use App\Models\Event;
 use App\Repositories\Interface\IEventRepository;
 use App\Response;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class EventController extends Controller
@@ -68,6 +69,9 @@ class EventController extends Controller
         $event = $this->eventRepository->createEvent(
             $request->event_name,
             $request->event_type,
+            $request->attendance_type,
+            $request->organizer,
+            $request->venue,
             $request->start_date,
             $request->end_date
         );
@@ -87,6 +91,9 @@ class EventController extends Controller
         $event = $this->eventRepository->updateEvent(
             $request->event_name,
             $request->event_type,
+            $request->attendance_type,
+            $request->organizer,
+            $request->venue,
             $id
         );
 
@@ -108,6 +115,21 @@ class EventController extends Controller
             'code' => Response::HTTP_SUCCESS_NO_RETURN,
             'status' => Response::SUCCESS,
             'message' => Response::SUCCESSFULLY_DELETED_EVENT,
+        ];
+
+        return response()->json($response, $response['code']);
+    }
+
+    public function getAllByStatus($event_status)
+    {
+        $events = $this->eventRepository->getAllEventsByStatus($event_status);
+
+        $response = [
+            'code' => Response::HTTP_SUCCESS,
+            'status' => Response::SUCCESS,
+            'message' => Response::SUCCESSFULLY_GET_ALL_EVENTS_BY_STATUS,
+            'count' => Event::count(),
+            'data' => $events,
         ];
 
         return response()->json($response, $response['code']);

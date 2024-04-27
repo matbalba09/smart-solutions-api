@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->integer('event_id')->nullable();
             $table->integer('user_id')->nullable();
+            $table->string('log_type')->nullable();
             $table->timestamps();
         });
     }

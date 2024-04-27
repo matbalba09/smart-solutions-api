@@ -12,6 +12,7 @@ class Log extends Model
     protected $fillable = [
         'event_id',
         'user_id',
+        'log_type',
     ];
 
     public function user()

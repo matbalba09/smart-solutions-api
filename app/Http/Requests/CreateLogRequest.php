@@ -24,6 +24,7 @@ class CreateLogRequest extends FormRequest
         return [
             'event_id' => 'nullable|integer',
             'user_id' => 'nullable|integer',
+            'log_type' => 'nullable|string',
         ];
     }
 }

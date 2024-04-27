@@ -15,11 +15,12 @@ class LogRepository implements ILogRepository
         return $logs;
     }
 
-    function createLog($event_id, $user_id)
+    function createLog($event_id, $user_id, $log_type)
     {
         $log = Log::create([
             'event_id' => $event_id,
             'user_id' => $user_id,
+            'log_type' => $log_type,
         ]);
 
         return $log;

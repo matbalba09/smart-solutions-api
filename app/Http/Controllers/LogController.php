@@ -35,7 +35,7 @@ class LogController extends Controller
 
     public function create(CreateLogRequest $request)
     {
-        $log = $this->logRepository->createLog($request->event_id, $request->user_id);
+        $log = $this->logRepository->createLog($request->event_id, $request->user_id, $request->log_type);
 
         $response = [
             'code' => Response::HTTP_SUCCESS_POST,

@@ -24,7 +24,7 @@ return new class extends Migration
             $table->string('branch')->nullable();
             $table->string('user_type')->nullable();
             $table->string('password')->nullable();
-            $table->string('is_Active')->nullable();
+            $table->string('is_active')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->rememberToken();
             $table->timestamps();

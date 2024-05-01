@@ -36,7 +36,7 @@ Route::prefix('v1')->group(function () {
         Route::get('getAllUserByDepartment/{department}', [UserController::class, 'getAllUserByDepartment']);
         Route::get('getAllUserByYearLevel/{year_level}', [UserController::class, 'getAllUserByYearLevel']);
         Route::get('getUserBySrCode/{sr_code}', [UserController::class, 'getUserBySrCode']);
-        Route::get('updateUser/{id}', [UserController::class, 'updateUser']);
+        Route::put('updateUser/{id}', [UserController::class, 'updateUser']);
     });
 
     Route::prefix('event')->group(function () {

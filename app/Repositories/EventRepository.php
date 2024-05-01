@@ -34,7 +34,16 @@ class EventRepository implements IEventRepository
 
     function getAllEventsbyEventType($event_type)
     {
-        $events = Event::where('event_type', $event_type)->get();
+        $dateNow = Helper::getDateNow();
+        $events = Event::where('event_type', $event_type)
+            ->selectRaw('events.*, CASE 
+                WHEN events.event_type = 1 AND (? > events.end_date) THEN \'COMPLETED\' 
+                WHEN events.event_type = 1 AND ? BETWEEN events.start_date AND events.end_date THEN \'ONGOING\' 
+                WHEN events.event_type = 1 AND ? < events.start_date THEN \'UPCOMING\' 
+                WHEN events.event_type = 2 THEN \'N/A\' 
+                ELSE NULL 
+                END as status')
+            ->setBindings([$dateNow, $dateNow, $dateNow])->get();
         return $events;
     }
 

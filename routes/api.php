@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\ClassAttendanceController;
+use App\Http\Controllers\ClassAttendanceLogController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\EventUserController;
 use App\Http\Controllers\HeartbeatController;
@@ -61,6 +63,22 @@ Route::prefix('v1')->group(function () {
         Route::post('create', [LogController::class, 'create']);
         Route::get('getByEventIdAndUserId/{event_id}/{user_id}', [LogController::class, 'getByEventIdAndUserId']);
         Route::get('getAllByEventId/{event_id}', [LogController::class, 'getAllByEventId']);
+    });
+
+    Route::prefix('classAttendance')->group(function () {
+        Route::get('/', [ClassAttendanceController::class, 'index']);
+        Route::get('{id}', [ClassAttendanceController::class, 'getClassAttendanceById']);
+        Route::post('create', [ClassAttendanceController::class, 'create']);
+        Route::put('update/{id}', [ClassAttendanceController::class, 'update']);
+        Route::delete('delete/{id}', [ClassAttendanceController::class, 'delete']);
+    });
+
+    Route::prefix('classAttendanceLog')->group(function () {
+        Route::get('/', [ClassAttendanceLogController::class, 'index']);
+        Route::get('{id}', [ClassAttendanceLogController::class, 'getClassAttendanceLogById']);
+        Route::post('create', [ClassAttendanceLogController::class, 'create']);
+        Route::put('update/{id}', [ClassAttendanceLogController::class, 'update']);
+        Route::delete('delete/{id}', [ClassAttendanceLogController::class, 'delete']);
     });
 
     Route::group(['middleware' => ['auth:sanctum']], function () {

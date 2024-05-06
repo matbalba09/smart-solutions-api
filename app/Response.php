@@ -63,6 +63,18 @@ class Response
     const SUCCESSFULLY_CREATED_LOG = 'Successfully created log';
     const LOG_NOT_FOUND = 'Log not found';
 
+    const SUCCESSFULLY_GET_ALL_CLASS_ATTENDANCE = 'Successfully get all class attendance';
+    const SUCCESSFULLY_GET_CLASS_ATTENDANCE = 'Successfully get class attendance';
+    const SUCCESSFULLY_CREATED_CLASS_ATTENDANCE = 'Successfully created class attendance';
+    const SUCCESSFULLY_UPDATED_CLASS_ATTENDANCE = 'Successfully updated class attendance';
+    const SUCCESSFULLY_DELETED_CLASS_ATTENDANCE = 'Successfully deleted class attendance';
+
+    const SUCCESSFULLY_GET_ALL_CLASS_ATTENDANCE_LOG = 'Successfully get all class attendance log';
+    const SUCCESSFULLY_GET_CLASS_ATTENDANCE_LOG = 'Successfully get class attendance log';
+    const SUCCESSFULLY_CREATED_CLASS_ATTENDANCE_LOG = 'Successfully created class attendance log';
+    const SUCCESSFULLY_UPDATED_CLASS_ATTENDANCE_LOG = 'Successfully updated class attendance log';
+    const SUCCESSFULLY_DELETED_CLASS_ATTENDANCE_LOG = 'Successfully deleted class attendance log';
+
     const EVENT = 1;
     const GENERAL_PURPOSE = 2;
 }

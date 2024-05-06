@@ -2,8 +2,12 @@
 
 namespace App\Providers;
 
+use App\Repositories\ClassAttendanceLogRepository;
+use App\Repositories\ClassAttendanceRepository;
 use App\Repositories\EventRepository;
 use App\Repositories\EventUserRepository;
+use App\Repositories\Interface\IClassAttendanceLogRepository;
+use App\Repositories\Interface\IClassAttendanceRepository;
 use App\Repositories\Interface\IEventRepository;
 use App\Repositories\Interface\IEventUserRepository;
 use App\Repositories\Interface\ILogRepository;
@@ -34,6 +38,14 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(
             IEventUserRepository::class,
             EventUserRepository::class
+        );
+        $this->app->bind(
+            IClassAttendanceRepository::class,
+            ClassAttendanceRepository::class
+        );
+        $this->app->bind(
+            IClassAttendanceLogRepository::class,
+            ClassAttendanceLogRepository::class
         );
     }
 

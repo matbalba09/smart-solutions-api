@@ -104,7 +104,6 @@ class ClassAttendanceLogController extends Controller
             'code' => Response::HTTP_SUCCESS,
             'status' => Response::SUCCESS,
             'message' => Response::SUCCESSFULLY_GET_ALL_CLASS_ATTENDANCE_LOG,
-            'count' => ClassAttendanceLog::count(),
             'data' => $classAttendanceLog,
         ];
 

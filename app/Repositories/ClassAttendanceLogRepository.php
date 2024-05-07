@@ -22,7 +22,7 @@ class ClassAttendanceLogRepository implements IClassAttendanceLogRepository
         return $classAttendanceLog;
     }
 
-    function createClassAttendanceLog($name)
+    function createClassAttendanceLog($name, $class_attendance_id)
     {
         $classAttendanceLog = ClassAttendanceLog::create([
             'name' => $name,
@@ -31,11 +31,12 @@ class ClassAttendanceLogRepository implements IClassAttendanceLogRepository
         return $classAttendanceLog;
     }
 
-    function updateClassAttendanceLog($name, $id)
+    function updateClassAttendanceLog($name, $class_attendance_id, $id)
     {
         $classAttendanceLog = ClassAttendanceLog::findOrFail($id);
 
         $classAttendanceLog->name = $name;
+        $classAttendanceLog->integer = $name;
         $classAttendanceLog->updated_at = Carbon::now();
         $classAttendanceLog->save();
 
@@ -47,6 +48,12 @@ class ClassAttendanceLogRepository implements IClassAttendanceLogRepository
         $classAttendanceLog = ClassAttendanceLog::findOrFail($id);
         $classAttendanceLog->delete();
 
+        return $classAttendanceLog;
+    }
+
+    function getAllClassAttendanceLogByClassAttendanceId($class_attendance_id)
+    {
+        $classAttendanceLog = ClassAttendanceLog::where('class_attendance_id', $class_attendance_id)->get();
         return $classAttendanceLog;
     }
 }

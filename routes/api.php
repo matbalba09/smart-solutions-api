@@ -79,6 +79,8 @@ Route::prefix('v1')->group(function () {
         Route::post('create', [ClassAttendanceLogController::class, 'create']);
         Route::put('update/{id}', [ClassAttendanceLogController::class, 'update']);
         Route::delete('delete/{id}', [ClassAttendanceLogController::class, 'delete']);
+
+        Route::get('getAllByClassAttendanceId/{class_attendance_id}', [ClassAttendanceLogController::class, 'getAllByClassAttendanceId']);
     });
 
     Route::group(['middleware' => ['auth:sanctum']], function () {

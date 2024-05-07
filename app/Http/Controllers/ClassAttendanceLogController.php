@@ -52,6 +52,7 @@ class ClassAttendanceLogController extends Controller
     {
         $classAttendanceLog = $this->classAttendanceLogRepository->createClassAttendanceLog(
             $request->name,
+            $request->class_attendance_id
         );
 
         $response = [
@@ -68,6 +69,7 @@ class ClassAttendanceLogController extends Controller
     {
         $classAttendanceLog = $this->classAttendanceLogRepository->updateClassAttendanceLog(
             $request->name,
+            $request->class_attendance_id,
             $id
         );
 
@@ -89,6 +91,21 @@ class ClassAttendanceLogController extends Controller
             'code' => Response::HTTP_SUCCESS_NO_RETURN,
             'status' => Response::SUCCESS,
             'message' => Response::SUCCESSFULLY_DELETED_CLASS_ATTENDANCE_LOG,
+        ];
+
+        return response()->json($response, $response['code']);
+    }
+
+    public function getAllByClassAttendanceId($class_attendance_id)
+    {
+        $classAttendanceLog = $this->classAttendanceLogRepository->getAllClassAttendanceLogByClassAttendanceId($class_attendance_id);
+
+        $response = [
+            'code' => Response::HTTP_SUCCESS,
+            'status' => Response::SUCCESS,
+            'message' => Response::SUCCESSFULLY_GET_ALL_CLASS_ATTENDANCE_LOG,
+            'count' => ClassAttendanceLog::count(),
+            'data' => $classAttendanceLog,
         ];
 
         return response()->json($response, $response['code']);

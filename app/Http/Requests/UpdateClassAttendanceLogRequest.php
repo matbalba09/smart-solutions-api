@@ -23,6 +23,7 @@ class UpdateClassAttendanceLogRequest extends FormRequest
     {
         return [
             'name' => 'nullable|string',
+            'class_attendance_id' => 'nullable|integer',
         ];
     }
 }

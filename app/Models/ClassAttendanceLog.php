@@ -11,5 +11,6 @@ class ClassAttendanceLog extends Model
 
     protected $fillable = [
         'name',
+        'class_attendance_id',
     ];
 }

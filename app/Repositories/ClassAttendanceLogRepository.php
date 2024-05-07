@@ -26,6 +26,7 @@ class ClassAttendanceLogRepository implements IClassAttendanceLogRepository
     {
         $classAttendanceLog = ClassAttendanceLog::create([
             'name' => $name,
+            'class_attendance_id' => $class_attendance_id,
         ]);
 
         return $classAttendanceLog;

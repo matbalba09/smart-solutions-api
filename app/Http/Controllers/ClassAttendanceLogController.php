@@ -68,12 +68,7 @@ class ClassAttendanceLogController extends Controller
 
     public function update(UpdateClassAttendanceLogRequest $request, $id)
     {
-        $classAttendanceLog = $this->classAttendanceLogRepository->updateClassAttendanceLog(
-            $request->user_id,
-            $request->name,
-            $request->class_attendance_id,
-            $id
-        );
+        $classAttendanceLog = $this->classAttendanceLogRepository->updateClassAttendanceLog($request,$id);
 
         $response = [
             'code' => Response::HTTP_SUCCESS,

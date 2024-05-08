@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use App\Helper\Helper;
+use App\Http\Requests\UpdateEventRequest;
 use Carbon\Carbon;
 use App\Models\Event;
 use App\Repositories\Interface\IEventRepository;
@@ -62,17 +63,11 @@ class EventRepository implements IEventRepository
         return $event;
     }
 
-    function updateEvent($event_name, $event_type, $attendance_type, $organizer, $venue, $id)
+    function updateEvent(UpdateEventRequest $request, $id)
     {
+        $validatedData = $request->validated();
         $event = Event::findOrFail($id);
-
-        $event->event_name = $event_name;
-        $event->event_type = $event_type;
-        $event->attendance_type = $attendance_type;
-        $event->organizer = $organizer;
-        $event->venue = $venue;
-        $event->updated_at = Carbon::now();
-        $event->save();
+        $event->update($validatedData);
 
         return $event;
     }

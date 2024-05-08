@@ -311,21 +311,7 @@ class UserController extends Controller
 
     public function updateUser(UpdateUserRequest $request, $id)
     {
-        $user = $this->userRepository->updateUser(
-            $request->name,
-            $request->sr_code,
-            $request->year_level,
-            $request->department,
-            $request->gsuite_email,
-            $request->password,
-            $request->fp_user,
-            $request->gender,
-            $request->mobile_number,
-            $request->branch,
-            $request->user_type,
-            $request->is_active,
-            $id
-        );
+        $user = $this->userRepository->updateUser($request,$id);
 
         $response = [
             'code' => Response::HTTP_SUCCESS,

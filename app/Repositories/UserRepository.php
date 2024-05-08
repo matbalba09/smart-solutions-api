@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use App\Http\Requests\UpdateUserRequest;
 use App\Models\User;
 use App\Repositories\Interface\IUserRepository;
 use Carbon\Carbon;
@@ -81,25 +82,12 @@ class UserRepository implements IUserRepository
         return $users;
     }
 
-    function updateUser($name, $sr_code, $year_level, $department, $gsuite_email, $password, $fp_user, $gender, $mobile_number, $branch, $user_type, $is_active, $id)
+    function updateUser(UpdateUserRequest $request, $id)
     {
-        $event = User::findOrFail($id);
+        $validatedData = $request->validated();
+        $user = User::findOrFail($id);
+        $user->update($validatedData);
 
-        $event->name = $name;
-        $event->sr_code = $sr_code;
-        $event->year_level = $year_level;
-        $event->department = $department;
-        $event->gsuite_email = $gsuite_email;
-        $event->password = $password;
-        $event->fp_user = $fp_user;
-        $event->gender = $gender;
-        $event->mobile_number = $mobile_number;
-        $event->branch = $branch;
-        $event->user_type = $user_type;
-        $event->is_active = $is_active;
-        $event->updated_at = Carbon::now();
-        $event->save();
-
-        return $event;
+        return $user;
     }
 }

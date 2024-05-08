@@ -70,14 +70,7 @@ class ClassAttendanceController extends Controller
 
     public function update(UpdateClassAttendanceRequest $request, $id)
     {
-        $classAttendance = $this->classAttendanceRepository->updateClassAttendance(
-            $request->course_code,
-            $request->title,
-            $request->name_of_faculty,
-            $request->date_time,
-            $request->room_or_venue,
-            $id
-        );
+        $classAttendance = $this->classAttendanceRepository->updateClassAttendance($request,$id);
 
         $response = [
             'code' => Response::HTTP_SUCCESS,

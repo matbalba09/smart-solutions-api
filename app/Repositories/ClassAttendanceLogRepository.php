@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use App\Helper\Helper;
+use App\Http\Requests\UpdateClassAttendanceLogRequest;
 use Carbon\Carbon;
 use App\Models\ClassAttendanceLog;
 use App\Repositories\Interface\IClassAttendanceLogRepository;
@@ -33,15 +34,11 @@ class ClassAttendanceLogRepository implements IClassAttendanceLogRepository
         return $classAttendanceLog;
     }
 
-    function updateClassAttendanceLog($user_id, $name, $class_attendance_id, $id)
+    function updateClassAttendanceLog(UpdateClassAttendanceLogRequest $request, $id)
     {
+        $validatedData = $request->validated();
         $classAttendanceLog = ClassAttendanceLog::findOrFail($id);
-
-        $classAttendanceLog->user_id = $user_id;
-        $classAttendanceLog->name = $name;
-        $classAttendanceLog->class_attendance_id = $class_attendance_id;
-        $classAttendanceLog->updated_at = Carbon::now();
-        $classAttendanceLog->save();
+        $classAttendanceLog->update($validatedData);
 
         return $classAttendanceLog;
     }

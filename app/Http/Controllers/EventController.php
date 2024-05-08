@@ -88,14 +88,7 @@ class EventController extends Controller
 
     public function update(UpdateEventRequest $request, $id)
     {
-        $event = $this->eventRepository->updateEvent(
-            $request->event_name,
-            $request->event_type,
-            $request->attendance_type,
-            $request->organizer,
-            $request->venue,
-            $id
-        );
+        $event = $this->eventRepository->updateEvent($request,$id);
 
         $response = [
             'code' => Response::HTTP_SUCCESS,

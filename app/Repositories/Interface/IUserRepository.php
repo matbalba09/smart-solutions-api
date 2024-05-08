@@ -2,6 +2,8 @@
 
 namespace App\Repositories\Interface;
 
+use App\Http\Requests\UpdateUserRequest;
+
 interface IUserRepository
 {
     function getAllUsers();
@@ -14,5 +16,5 @@ interface IUserRepository
     function getAllUserByDepartment($department);
     function getAllUserByYearLevel($year_level);
     function getAllUserFpUsers();
-    function updateUser($name, $sr_code, $year_level, $department, $gsuite_email, $password, $fp_user, $gender, $mobile_number, $branch, $user_type, $is_active, $id);
+    function updateUser(UpdateUserRequest $request, $id);
 }

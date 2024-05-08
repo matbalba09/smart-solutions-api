@@ -51,6 +51,7 @@ class ClassAttendanceLogController extends Controller
     public function create(CreateClassAttendanceLogRequest $request)
     {
         $classAttendanceLog = $this->classAttendanceLogRepository->createClassAttendanceLog(
+            $request->user_id,
             $request->name,
             $request->class_attendance_id
         );
@@ -68,6 +69,7 @@ class ClassAttendanceLogController extends Controller
     public function update(UpdateClassAttendanceLogRequest $request, $id)
     {
         $classAttendanceLog = $this->classAttendanceLogRepository->updateClassAttendanceLog(
+            $request->user_id,
             $request->name,
             $request->class_attendance_id,
             $id

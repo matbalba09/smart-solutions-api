@@ -22,9 +22,10 @@ class ClassAttendanceLogRepository implements IClassAttendanceLogRepository
         return $classAttendanceLog;
     }
 
-    function createClassAttendanceLog($name, $class_attendance_id)
+    function createClassAttendanceLog($user_id, $name, $class_attendance_id)
     {
         $classAttendanceLog = ClassAttendanceLog::create([
+            'user_id' => $user_id,
             'name' => $name,
             'class_attendance_id' => $class_attendance_id,
         ]);
@@ -32,10 +33,11 @@ class ClassAttendanceLogRepository implements IClassAttendanceLogRepository
         return $classAttendanceLog;
     }
 
-    function updateClassAttendanceLog($name, $class_attendance_id, $id)
+    function updateClassAttendanceLog($user_id, $name, $class_attendance_id, $id)
     {
         $classAttendanceLog = ClassAttendanceLog::findOrFail($id);
 
+        $classAttendanceLog->user_id = $user_id;
         $classAttendanceLog->name = $name;
         $classAttendanceLog->integer = $name;
         $classAttendanceLog->updated_at = Carbon::now();

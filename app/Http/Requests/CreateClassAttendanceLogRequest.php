@@ -22,6 +22,7 @@ class CreateClassAttendanceLogRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'user_id' => 'nullable|string',
             'name' => 'nullable|string',
             'class_attendance_id' => 'nullable|integer',
         ];

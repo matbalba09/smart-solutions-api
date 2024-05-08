@@ -22,7 +22,7 @@ class UpdateClassAttendanceLogRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'user_id' => 'nullable|string',
+            'user_id' => 'nullable|integer',
             'name' => 'nullable|string',
             'class_attendance_id' => 'nullable|integer',
         ];

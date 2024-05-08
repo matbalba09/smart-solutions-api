@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('class_attendance_logs', function (Blueprint $table) {
             $table->id();
-            $table->string('user_id')->nullable();
+            $table->integer('user_id')->nullable();
             $table->string('name')->nullable();
             $table->integer('class_attendance_id')->nullable();
             $table->timestamps();

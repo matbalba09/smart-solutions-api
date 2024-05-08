@@ -39,7 +39,7 @@ class ClassAttendanceLogRepository implements IClassAttendanceLogRepository
 
         $classAttendanceLog->user_id = $user_id;
         $classAttendanceLog->name = $name;
-        $classAttendanceLog->integer = $name;
+        $classAttendanceLog->class_attendance_id = $class_attendance_id;
         $classAttendanceLog->updated_at = Carbon::now();
         $classAttendanceLog->save();
 

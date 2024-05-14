@@ -7,6 +7,7 @@ use App\Http\Requests\UpdateEventRequest;
 use Carbon\Carbon;
 use App\Models\Event;
 use App\Repositories\Interface\IEventRepository;
+use App\Response;
 
 class EventRepository implements IEventRepository
 {
@@ -22,6 +23,7 @@ class EventRepository implements IEventRepository
                 ELSE NULL 
                 END as status')
             ->setBindings([$dateNow, $dateNow, $dateNow])
+            ->where('is_deleted', Response::FALSE)
             ->get();
 
         return $events;
@@ -44,6 +46,7 @@ class EventRepository implements IEventRepository
                 ELSE NULL 
                 END as status')
             ->setBindings([$dateNow, $dateNow, $dateNow])
+            ->where('is_deleted', Response::FALSE)
             ->where('event_type', $event_type)->get();
         return $events;
     }
@@ -58,6 +61,7 @@ class EventRepository implements IEventRepository
             'venue' => $venue,
             'start_date' => $start_date,
             'end_date' => $end_date,
+            'is_deleted' => Response::FALSE,
         ]);
 
         return $event;

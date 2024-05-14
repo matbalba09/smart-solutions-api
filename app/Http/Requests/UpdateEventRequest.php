@@ -29,6 +29,7 @@ class UpdateEventRequest extends FormRequest
             'venue' => 'nullable|string',
             'start_date' => 'nullable|string',
             'end_date' => 'nullable|string',
+            'is_deleted' => 'nullable|string',
         ];
     }
 }

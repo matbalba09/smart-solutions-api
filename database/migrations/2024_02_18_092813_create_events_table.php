@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('venue')->nullable();
             $table->string('start_date')->nullable();
             $table->string('end_date')->nullable();
+            $table->string('is_deleted')->nullable();
             $table->timestamps();
         });
     }

@@ -49,6 +49,7 @@ Route::prefix('v1')->group(function () {
         Route::put('update/{id}', [EventController::class, 'update']);
         Route::delete('delete/{id}', [EventController::class, 'delete']);
         Route::get('getAllByStatus/{event_status}', [EventController::class, 'getAllByStatus']);
+        Route::get('getAll/DeletedEvents', [EventController::class, 'getAllDeletedEvents']);
     });
 
     Route::prefix('eventUser')->group(function () {

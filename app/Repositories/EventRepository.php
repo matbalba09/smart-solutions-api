@@ -99,4 +99,10 @@ class EventRepository implements IEventRepository
         }
         return $events;
     }
+
+    function getAllDeletedEvents()
+    {
+        $events = Event::where('is_deleted', Response::TRUE)->get();
+        return $events;
+    }
 }

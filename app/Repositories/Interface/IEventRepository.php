@@ -13,4 +13,5 @@ interface IEventRepository
     function updateEvent(UpdateEventRequest $request, $id);
     function deleteEvent($id);
     function getAllEventsByStatus($event_status);
+    function getAllDeletedEvents();
 }

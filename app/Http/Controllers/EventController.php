@@ -127,4 +127,18 @@ class EventController extends Controller
 
         return response()->json($response, $response['code']);
     }
+
+    public function getAllDeletedEvents()
+    {
+        $events = $this->eventRepository->getAllDeletedEvents();
+
+        $response = [
+            'code' => Response::HTTP_SUCCESS,
+            'status' => Response::SUCCESS,
+            'message' => Response::SUCCESSFULLY_GET_ALL_DELETED_EVENTS,
+            'data' => $events,
+        ];
+
+        return response()->json($response, $response['code']);
+    }
 }

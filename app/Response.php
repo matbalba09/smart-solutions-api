@@ -37,6 +37,7 @@ class Response
     const SUCCESSFULLY_CREATED_EVENT = 'Successfully created event';
     const SUCCESSFULLY_UPDATED_EVENT = 'Successfully updated event';
     const SUCCESSFULLY_DELETED_EVENT = 'Successfully deleted event';
+    const SUCCESSFULLY_GET_ALL_DELETED_EVENTS = 'Successfully get all deleted events';
 
     const INVALID_CREDENTIAL = 'Invalid Credentials';
     const INVALID_EMAIL = 'Email already exists';

@@ -111,7 +111,7 @@ class ClassAttendanceLogController extends Controller
     {
         $classAttendanceLog = $this->classAttendanceLogRepository->getByClassAttendanceIdAndUserId($id, $userid);
 
-        if ($classAttendanceLog = null) {
+        if ($classAttendanceLog == null) {
             $response = [
                 'code' => Response::HTTP_SUCCESS,
                 'status' => Response::SUCCESS,

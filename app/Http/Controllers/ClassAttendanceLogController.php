@@ -68,7 +68,7 @@ class ClassAttendanceLogController extends Controller
 
     public function update(UpdateClassAttendanceLogRequest $request, $id)
     {
-        $classAttendanceLog = $this->classAttendanceLogRepository->updateClassAttendanceLog($request,$id);
+        $classAttendanceLog = $this->classAttendanceLogRepository->updateClassAttendanceLog($request, $id);
 
         $response = [
             'code' => Response::HTTP_SUCCESS,
@@ -111,6 +111,14 @@ class ClassAttendanceLogController extends Controller
     {
         $classAttendanceLog = $this->classAttendanceLogRepository->getByClassAttendanceIdAndUserId($id, $userid);
 
+        if ($classAttendanceLog = null) {
+            $response = [
+                'code' => Response::HTTP_SUCCESS,
+                'status' => Response::SUCCESS,
+                'message' => Response::SUCCESSFULLY_GET_CLASS_ATTENDANCE_LOG,
+                'data' => "{}",
+            ];
+        }
         $response = [
             'code' => Response::HTTP_SUCCESS,
             'status' => Response::SUCCESS,
@@ -120,6 +128,4 @@ class ClassAttendanceLogController extends Controller
 
         return response()->json($response, $response['code']);
     }
-
-    
 }

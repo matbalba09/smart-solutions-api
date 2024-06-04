@@ -56,4 +56,12 @@ class ClassAttendanceLogRepository implements IClassAttendanceLogRepository
         $classAttendanceLog = ClassAttendanceLog::where('class_attendance_id', $class_attendance_id)->get();
         return $classAttendanceLog;
     }
+
+    function getByClassAttendanceIdAndUserId($id, $userid)
+    {
+        $classAttendanceLog = ClassAttendanceLog::where('class_attendance_id', $id)
+            ->where('user_id', $userid)
+            ->first();
+        return $classAttendanceLog;
+    }
 }

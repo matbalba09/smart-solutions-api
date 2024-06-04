@@ -11,6 +11,7 @@ interface IClassAttendanceLogRepository
     function createClassAttendanceLog($user_id, $name, $class_attendance_id);
     function updateClassAttendanceLog(UpdateClassAttendanceLogRequest $request, $id);
     function deleteClassAttendanceLog($id);
-    
+
     function getAllClassAttendanceLogByClassAttendanceId($class_attendance_id);
+    function getByClassAttendanceIdAndUserId($id, $userid);
 }

@@ -106,4 +106,20 @@ class ClassAttendanceLogController extends Controller
 
         return response()->json($response, $response['code']);
     }
+
+    public function getByClassAttendanceIdAndUserId($id, $userid)
+    {
+        $classAttendanceLog = $this->classAttendanceLogRepository->getByClassAttendanceIdAndUserId($id, $userid);
+
+        $response = [
+            'code' => Response::HTTP_SUCCESS,
+            'status' => Response::SUCCESS,
+            'message' => Response::SUCCESSFULLY_GET_CLASS_ATTENDANCE_LOG,
+            'data' => $classAttendanceLog,
+        ];
+
+        return response()->json($response, $response['code']);
+    }
+
+    
 }

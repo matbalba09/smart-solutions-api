@@ -82,6 +82,7 @@ Route::prefix('v1')->group(function () {
         Route::delete('delete/{id}', [ClassAttendanceLogController::class, 'delete']);
 
         Route::get('getAllByClassAttendanceId/{class_attendance_id}', [ClassAttendanceLogController::class, 'getAllByClassAttendanceId']);
+        Route::get('getByClassAttendanceIdAndUserId/{id}/{userid}', [ClassAttendanceLogController::class, 'getByClassAttendanceIdAndUserId']);
     });
 
     Route::group(['middleware' => ['auth:sanctum']], function () {

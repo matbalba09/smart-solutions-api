@@ -116,7 +116,7 @@ class ClassAttendanceLogController extends Controller
                 'code' => Response::HTTP_SUCCESS,
                 'status' => Response::SUCCESS,
                 'message' => Response::SUCCESSFULLY_GET_CLASS_ATTENDANCE_LOG,
-                'data' => "{}",
+                'data' => (object) [],
             ];
         }
         $response = [

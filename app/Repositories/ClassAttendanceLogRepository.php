@@ -13,13 +13,17 @@ class ClassAttendanceLogRepository implements IClassAttendanceLogRepository
 
     function getAllClassAttendanceLog()
     {
-        $classAttendanceLog = ClassAttendanceLog::get();
+        $classAttendanceLog = ClassAttendanceLog::with('user')->get();
+        foreach ($classAttendanceLog as $log) {
+            $log->user->makeHidden('fp_user');
+        }
         return $classAttendanceLog;
     }
 
     function getClassAttendanceLogById($id)
     {
-        $classAttendanceLog = ClassAttendanceLog::findOrFail($id);
+        $classAttendanceLog = ClassAttendanceLog::with('user')->findOrFail($id);
+        $classAttendanceLog->user->makeHidden('fp_user');
         return $classAttendanceLog;
     }
 
@@ -53,15 +57,19 @@ class ClassAttendanceLogRepository implements IClassAttendanceLogRepository
 
     function getAllClassAttendanceLogByClassAttendanceId($class_attendance_id)
     {
-        $classAttendanceLog = ClassAttendanceLog::where('class_attendance_id', $class_attendance_id)->get();
+        $classAttendanceLog = ClassAttendanceLog::with('user')->where('class_attendance_id', $class_attendance_id)->get();
+        foreach ($classAttendanceLog as $log) {
+            $log->user->makeHidden('fp_user');
+        }
         return $classAttendanceLog;
     }
 
     function getByClassAttendanceIdAndUserId($id, $userid)
     {
-        $classAttendanceLog = ClassAttendanceLog::where('class_attendance_id', $id)
+        $classAttendanceLog = ClassAttendanceLog::with('user')->where('class_attendance_id', $id)
             ->where('user_id', $userid)
             ->first();
+        $classAttendanceLog->user->makeHidden('fp_user');
         return $classAttendanceLog;
     }
 }

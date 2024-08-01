@@ -14,4 +14,9 @@ class ClassAttendanceLog extends Model
         'name',
         'class_attendance_id',
     ];
+
+    public function user()
+    {
+        return $this->hasOne(User::class, 'id', 'user_id');
+    }
 }

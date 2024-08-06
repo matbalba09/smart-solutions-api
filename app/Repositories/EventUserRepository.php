@@ -33,13 +33,11 @@ class EventUserRepository implements IEventUserRepository
 
     function createEventUsers($event_id, $user_ids)
     {
-
-
         $eventUsers = [];
 
         foreach ($user_ids as $user_id) {
-            $eventUser = EventUser::where('event_id', $event_id)->where('user_id', $user_id)->first();
-            $eventUser->delete();
+            $oldEventUser = EventUser::where('event_id', $event_id)->where('user_id', $user_id)->first();
+            $oldEventUser->delete();
 
             $eventUser = EventUser::create([
                 'event_id' => $event_id,

@@ -27,6 +27,7 @@ class UpdateClassAttendanceRequest extends FormRequest
             'name_of_faculty' => 'nullable|string',
             'date_time' => 'nullable|string',
             'room_or_venue' => 'nullable|string',
+            'is_deleted' => 'nullable|string',
         ];
     }
 }

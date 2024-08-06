@@ -7,13 +7,14 @@ use App\Http\Requests\UpdateClassAttendanceRequest;
 use Carbon\Carbon;
 use App\Models\ClassAttendance;
 use App\Repositories\Interface\IClassAttendanceRepository;
+use App\Response;
 
 class ClassAttendanceRepository implements IClassAttendanceRepository
 {
 
     function getAllClassAttendance()
     {
-        $classAttendance = ClassAttendance::get();
+        $classAttendance = ClassAttendance::where('is_deleted', Response::FALSE)->get();
         return $classAttendance;
     }
 
@@ -31,6 +32,7 @@ class ClassAttendanceRepository implements IClassAttendanceRepository
             'name_of_faculty' => $name_of_faculty,
             'date_time' => $date_time,
             'room_or_venue' => $room_or_venue,
+            'is_deleted' => Response::FALSE,
         ]);
 
         return $classAttendance;

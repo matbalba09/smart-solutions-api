@@ -15,5 +15,6 @@ class ClassAttendance extends Model
         'name_of_faculty',
         'date_time',
         'room_or_venue',
+        'is_deleted',
     ];
 }

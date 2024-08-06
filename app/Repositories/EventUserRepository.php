@@ -17,7 +17,7 @@ class EventUserRepository implements IEventUserRepository
     function getAllEventUsersByEventId($event_id)
     {
         $eventUsers = EventUser::with(['user' => function ($query) {
-            $query->select('id', 'name', 'sr_code', 'year_level', 'department', 'gsuite_email', 'created_at', 'updated_at');
+            $query->select('id', 'name', 'sr_code', 'year_level', 'department', 'gsuite_email', 'gender', 'mobile_number', 'branch', 'user_type', 'is_active', 'created_at', 'updated_at');
         }])
             ->selectRaw('event_users.*, CASE WHEN logs.id IS NOT NULL THEN TRUE ELSE FALSE END AS "isPresent"')
             ->leftJoin('logs', function ($join) use ($event_id) {

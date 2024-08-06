@@ -53,6 +53,8 @@ class Response
     const SUCCESSFULLY_GET_ALL_USER_FINGER_PRINTS = 'Successfully get all user finger prints';
     const SUCCESSFULLY_UPDATED_USER = 'Successfully updated user';
 
+    const SUCCESSFULLY_UPDATED_ADMIN = 'Successfully updated admin';
+
     const SUCCESSFULLY_GET_ALL_EVENT_USERS = 'Successfully get all event users';
     const SUCCESSFULLY_CREATED_EVENT_USERS = 'Successfully created event user/s';
     const SUCCESSFULLY_UPDATED_EVENT_USER = 'Successfully updated event user';

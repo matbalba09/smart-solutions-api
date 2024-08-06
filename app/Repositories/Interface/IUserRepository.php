@@ -2,6 +2,7 @@
 
 namespace App\Repositories\Interface;
 
+use App\Http\Requests\AdminRequest;
 use App\Http\Requests\UpdateUserRequest;
 
 interface IUserRepository
@@ -17,4 +18,6 @@ interface IUserRepository
     function getAllUserByYearLevel($year_level);
     function getAllUserFpUsers();
     function updateUser(UpdateUserRequest $request, $id);
+
+    function updateAdmin(AdminRequest $request, $id);
 }

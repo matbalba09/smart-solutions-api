@@ -40,6 +40,7 @@ Route::prefix('v1')->group(function () {
         Route::get('getUserBySrCode/{sr_code}', [UserController::class, 'getUserBySrCode']);
         Route::put('updateUser/{id}', [UserController::class, 'updateUser']);
     });
+    Route::put('updateAdmin/{id}', [UserController::class, 'updateAdmin']);
 
     Route::prefix('event')->group(function () {
         Route::get('/', [EventController::class, 'index']);

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\AdminRequest;
 use App\Http\Requests\UpdateUserRequest;
 use App\Models\Admin;
 use App\Models\User;
@@ -80,6 +81,7 @@ class UserController extends Controller
                     'code' => Response::HTTP_SUCCESS,
                     'status' => Response::SUCCESS,
                     'message' => Response::SUCCESSFULLY_LOGGED_IN,
+                    'data' => $admin
                 ];
             }
         } else if ($request->has('username')) {
@@ -96,6 +98,7 @@ class UserController extends Controller
                         'code' => Response::HTTP_SUCCESS,
                         'status' => Response::SUCCESS,
                         'message' => Response::SUCCESSFULLY_LOGGED_IN,
+                        'data' => $admin
                     ];
                 }
             } else {
@@ -318,6 +321,20 @@ class UserController extends Controller
             'status' => Response::SUCCESS,
             'message' => Response::SUCCESSFULLY_UPDATED_USER,
             'data' => $user,
+        ];
+
+        return response()->json($response, $response['code']);
+    }
+
+    public function updateAdmin(AdminRequest $request, $id)
+    {
+        $admin = $this->userRepository->updateAdmin($request,$id);
+
+        $response = [
+            'code' => Response::HTTP_SUCCESS,
+            'status' => Response::SUCCESS,
+            'message' => Response::SUCCESSFULLY_UPDATED_ADMIN,
+            'data' => $admin,
         ];
 
         return response()->json($response, $response['code']);

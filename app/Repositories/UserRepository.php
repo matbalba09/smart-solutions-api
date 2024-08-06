@@ -2,7 +2,9 @@
 
 namespace App\Repositories;
 
+use App\Http\Requests\AdminRequest;
 use App\Http\Requests\UpdateUserRequest;
+use App\Models\Admin;
 use App\Models\User;
 use App\Repositories\Interface\IUserRepository;
 use Carbon\Carbon;
@@ -89,5 +91,14 @@ class UserRepository implements IUserRepository
         $user->update($validatedData);
 
         return $user;
+    }
+
+    function updateAdmin(AdminRequest $request, $id)
+    {
+        $validatedData = $request->validated();
+        $admin = Admin::findOrFail($id);
+        $admin->update($validatedData);
+
+        return $admin;
     }
 }

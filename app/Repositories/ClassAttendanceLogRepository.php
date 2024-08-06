@@ -69,7 +69,12 @@ class ClassAttendanceLogRepository implements IClassAttendanceLogRepository
         $classAttendanceLog = ClassAttendanceLog::with('user')->where('class_attendance_id', $id)
             ->where('user_id', $userid)
             ->first();
-        $classAttendanceLog->user->makeHidden('fp_user');
-        return $classAttendanceLog;
+
+        if ($classAttendanceLog) {
+            $classAttendanceLog->user->makeHidden('fp_user');
+            return $classAttendanceLog;
+        } else {
+            return null;
+        }
     }
 }

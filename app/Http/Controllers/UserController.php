@@ -121,8 +121,6 @@ class UserController extends Controller
     public function register(Request $request)
     {
         $existingUserEmail = $this->userRepository->getUserByEmail($request->email);
-        $existingUserSrCode = $this->userRepository->getUserBySrCode($request->sr_code);
-
         if ($existingUserEmail) {
             $response = [
                 'code' => Response::HTTP_CONFLICT,
@@ -130,26 +128,41 @@ class UserController extends Controller
                 'message' => Response::INVALID_EMAIL,
             ];
             return response()->json($response, $response['code']);
-        } elseif ($existingUserSrCode) {
-            $response = [
-                'code' => Response::HTTP_CONFLICT,
-                'status' => Response::FAIL,
-                'message' => Response::INVALID_SR_CODE,
-            ];
-            return response()->json($response, $response['code']);
         }
-
-        $user = User::create([
-            'name' => $request->name,
-            'sr_code' => $request->sr_code,
-            'year_level' => $request->year_level,
-            'department' => $request->department,
-            'gsuite_email' => $request->email,
-            'gender' => $request->gender,
-            'mobile_number' => $request->mobile_number,
-            'branch' => $request->branch,
-            'user_type' => $request->user_type,
-        ]);
+        if ($request->user_type == 'Guest') {
+            $user = User::create([
+                'name' => $request->name,
+                'sr_code' => $request->sr_code,
+                'year_level' => $request->year_level,
+                'department' => $request->department,
+                'gsuite_email' => $request->email,
+                'gender' => $request->gender,
+                'mobile_number' => $request->mobile_number,
+                'branch' => $request->branch,
+                'user_type' => $request->user_type,
+            ]);
+        } else {
+            $existingUserSrCode = $this->userRepository->getUserBySrCode($request->sr_code);
+            if ($existingUserSrCode) {
+                $response = [
+                    'code' => Response::HTTP_CONFLICT,
+                    'status' => Response::FAIL,
+                    'message' => Response::INVALID_SR_CODE,
+                ];
+                return response()->json($response, $response['code']);
+            }
+            $user = User::create([
+                'name' => $request->name,
+                'sr_code' => $request->sr_code,
+                'year_level' => $request->year_level,
+                'department' => $request->department,
+                'gsuite_email' => $request->email,
+                'gender' => $request->gender,
+                'mobile_number' => $request->mobile_number,
+                'branch' => $request->branch,
+                'user_type' => $request->user_type,
+            ]);
+        }
 
         $response = [
             'code' => Response::HTTP_SUCCESS_POST,
@@ -314,7 +327,7 @@ class UserController extends Controller
 
     public function updateUser(UpdateUserRequest $request, $id)
     {
-        $user = $this->userRepository->updateUser($request,$id);
+        $user = $this->userRepository->updateUser($request, $id);
 
         $response = [
             'code' => Response::HTTP_SUCCESS,
@@ -328,7 +341,7 @@ class UserController extends Controller
 
     public function updateAdmin(AdminRequest $request, $id)
     {
-        $admin = $this->userRepository->updateAdmin($request,$id);
+        $admin = $this->userRepository->updateAdmin($request, $id);
 
         $response = [
             'code' => Response::HTTP_SUCCESS,

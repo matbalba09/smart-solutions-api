@@ -37,7 +37,9 @@ class EventUserRepository implements IEventUserRepository
 
         foreach ($user_ids as $user_id) {
             $oldEventUser = EventUser::where('event_id', $event_id)->where('user_id', $user_id)->first();
-            $oldEventUser->delete();
+            if ($oldEventUser){
+                $oldEventUser->delete();
+            }
 
             $eventUser = EventUser::create([
                 'event_id' => $event_id,

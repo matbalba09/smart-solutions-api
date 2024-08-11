@@ -42,10 +42,10 @@ class EventRepository implements IEventRepository
                 WHEN events.event_type = 1 AND (? > events.end_date) THEN \'COMPLETED\' 
                 WHEN events.event_type = 1 AND ? BETWEEN events.start_date AND events.end_date THEN \'ONGOING\' 
                 WHEN events.event_type = 1 AND ? < events.start_date THEN \'UPCOMING\' 
-                WHEN events.event_type = 2 THEN \'N/A\' 
+                WHEN events.event_type = 2 AND ? > events.start_date THEN \'COMPLETED\' 
                 ELSE NULL 
                 END as status')
-            ->setBindings([$dateNow, $dateNow, $dateNow])
+            ->setBindings([$dateNow, $dateNow, $dateNow, $dateNow])
             ->where('is_deleted', Response::FALSE)
             ->where('event_type', $event_type)->get();
         return $events;

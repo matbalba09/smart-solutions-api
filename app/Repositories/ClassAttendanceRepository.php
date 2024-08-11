@@ -14,7 +14,13 @@ class ClassAttendanceRepository implements IClassAttendanceRepository
 
     function getAllClassAttendance()
     {
-        $classAttendance = ClassAttendance::where('is_deleted', Response::FALSE)->get();
+        $dateNow = Helper::getDateNow();
+        $classAttendance = ClassAttendance::selectRaw('class_attendances.*, CASE 
+                WHEN ? > class_attendances.date_time THEN \'COMPLETED\' 
+                ELSE NULL
+                END as status')
+            ->setBindings([$dateNow])
+            ->where('is_deleted', Response::FALSE)->get();
         return $classAttendance;
     }
 

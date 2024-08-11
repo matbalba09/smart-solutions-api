@@ -35,6 +35,7 @@ Route::prefix('v1')->group(function () {
         Route::put('registerUserFp/{id}', [UserController::class, 'registerUserFp']);
         Route::get('getUserFpByUserId/{id}', [UserController::class, 'getUserFpByUserId']);
         Route::get('getUserByName/{name}', [UserController::class, 'getUserByName']);
+        Route::get('getUserByEmail/{email}', [UserController::class, 'getUserByEmail']);
         Route::get('getAllUserByDepartment/{department}', [UserController::class, 'getAllUserByDepartment']);
         Route::get('getAllUserByYearLevel/{year_level}', [UserController::class, 'getAllUserByYearLevel']);
         Route::get('getUserBySrCode/{sr_code}', [UserController::class, 'getUserBySrCode']);

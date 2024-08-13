@@ -80,7 +80,7 @@ class UserRepository implements IUserRepository
 
     function getAllUserFpUsers()
     {
-        $users = User::select('id', 'fp_user')->get();
+        $users = User::get();
         return $users;
     }
 

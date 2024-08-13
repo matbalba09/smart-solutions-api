@@ -129,10 +129,9 @@ class UserController extends Controller
             ];
             return response()->json($response, $response['code']);
         }
-        if ($request->user_type == 'Guest') {
+        if ($request->user_type == 'Guest' || $request->user_type == 'Faculty') {
             $user = User::create([
                 'name' => $request->name,
-                'sr_code' => $request->sr_code,
                 'year_level' => $request->year_level,
                 'department' => $request->department,
                 'gsuite_email' => $request->email,

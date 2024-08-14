@@ -70,6 +70,7 @@ Route::prefix('v1')->group(function () {
 
     Route::prefix('classAttendance')->group(function () {
         Route::get('/', [ClassAttendanceController::class, 'index']);
+        Route::get('getAllDeletedClassAttendance', [ClassAttendanceController::class, 'getAllDeletedClassAttendance']);
         Route::get('{id}', [ClassAttendanceController::class, 'getClassAttendanceById']);
         Route::post('create', [ClassAttendanceController::class, 'create']);
         Route::put('update/{id}', [ClassAttendanceController::class, 'update']);

@@ -60,4 +60,10 @@ class ClassAttendanceRepository implements IClassAttendanceRepository
 
         return $classAttendance;
     }
+
+    function getAllDeletedClassAttendance()
+    {
+        $classAttendance = ClassAttendance::where('is_deleted', Response::TRUE)->get();
+        return $classAttendance;
+    }
 }

@@ -94,4 +94,19 @@ class ClassAttendanceController extends Controller
 
         return response()->json($response, $response['code']);
     }
+
+    public function getAllDeletedClassAttendance()
+    {
+        $classAttendance = $this->classAttendanceRepository->getAllDeletedClassAttendance();
+
+        $response = [
+            'code' => Response::HTTP_SUCCESS,
+            'status' => Response::SUCCESS,
+            'message' => Response::SUCCESSFULLY_GET_ALL_DELETED_CLASS_ATTENDANCE,
+            'count' => ClassAttendance::count(),
+            'data' => $classAttendance,
+        ];
+
+        return response()->json($response, $response['code']);
+    }
 }

@@ -71,6 +71,7 @@ class Response
     const SUCCESSFULLY_CREATED_CLASS_ATTENDANCE = 'Successfully created class attendance';
     const SUCCESSFULLY_UPDATED_CLASS_ATTENDANCE = 'Successfully updated class attendance';
     const SUCCESSFULLY_DELETED_CLASS_ATTENDANCE = 'Successfully deleted class attendance';
+    const SUCCESSFULLY_GET_ALL_DELETED_CLASS_ATTENDANCE = 'Successfully get all deleted class attendance';
 
     const SUCCESSFULLY_GET_ALL_CLASS_ATTENDANCE_LOG = 'Successfully get all class attendance log';
     const SUCCESSFULLY_GET_CLASS_ATTENDANCE_LOG = 'Successfully get class attendance log';

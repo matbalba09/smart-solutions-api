@@ -35,6 +35,7 @@ class UpdateUserRequest extends FormRequest
             'user_type' => 'nullable|string',
             'is_active' => 'nullable|string',
             'fp_user' => 'nullable|string',
+            'designation' => 'nullable|string',
         ];
     }
 }

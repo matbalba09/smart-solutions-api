@@ -14,28 +14,28 @@ class UserRepository implements IUserRepository
 
     function getAllUsers()
     {
-        $users = User::select('id', 'name', 'sr_code', 'year_level', 'department', 'gsuite_email', 'gender', 'mobile_number', 'branch', 'user_type', 'created_at', 'updated_at', 'is_active')
+        $users = User::select('id', 'name', 'sr_code', 'year_level', 'department', 'gsuite_email', 'gender', 'mobile_number', 'branch', 'user_type', 'created_at', 'updated_at', 'is_active', 'designation')
             ->get();
         return $users;
     }
 
     function getUserById($id)
     {
-        $user = User::select('id', 'name', 'sr_code', 'year_level', 'department', 'gsuite_email',  'gender', 'mobile_number', 'branch', 'user_type', 'created_at', 'updated_at', 'is_active')
+        $user = User::select('id', 'name', 'sr_code', 'year_level', 'department', 'gsuite_email',  'gender', 'mobile_number', 'branch', 'user_type', 'created_at', 'updated_at', 'is_active', 'designation')
             ->findOrFail($id);
         return $user;
     }
 
     function getUserByEmail($email)
     {
-        $user = User::select('id', 'name', 'sr_code', 'year_level', 'department', 'gsuite_email',  'gender', 'mobile_number', 'branch', 'user_type', 'created_at', 'updated_at', 'is_active')
+        $user = User::select('id', 'name', 'sr_code', 'year_level', 'department', 'gsuite_email',  'gender', 'mobile_number', 'branch', 'user_type', 'created_at', 'updated_at', 'is_active', 'designation')
             ->where('gsuite_email', $email)->first();
         return $user;
     }
 
     function getUserBySrCode($sr_code)
     {
-        $user = User::select('id', 'name', 'sr_code', 'year_level', 'department', 'gsuite_email',  'gender', 'mobile_number', 'branch', 'user_type', 'created_at', 'updated_at', 'is_active')
+        $user = User::select('id', 'name', 'sr_code', 'year_level', 'department', 'gsuite_email',  'gender', 'mobile_number', 'branch', 'user_type', 'created_at', 'updated_at', 'is_active', 'designation')
             ->where('sr_code', $sr_code)->first();
         return $user;
     }
@@ -59,21 +59,21 @@ class UserRepository implements IUserRepository
 
     function getUserByName($name)
     {
-        $users = User::select('id', 'name', 'sr_code', 'year_level', 'department', 'gsuite_email',  'gender', 'mobile_number', 'branch', 'user_type', 'created_at', 'updated_at', 'is_active')
+        $users = User::select('id', 'name', 'sr_code', 'year_level', 'department', 'gsuite_email',  'gender', 'mobile_number', 'branch', 'user_type', 'created_at', 'updated_at', 'is_active', 'designation')
             ->where('name', 'LIKE', '%' . $name . '%')->get();
         return $users;
     }
 
     function getAllUserByDepartment($department)
     {
-        $users = User::select('id', 'name', 'sr_code', 'year_level', 'department', 'gsuite_email',  'gender', 'mobile_number', 'branch', 'user_type', 'created_at', 'updated_at', 'is_active')
+        $users = User::select('id', 'name', 'sr_code', 'year_level', 'department', 'gsuite_email',  'gender', 'mobile_number', 'branch', 'user_type', 'created_at', 'updated_at', 'is_active', 'designation')
             ->where('department', $department)->get();
         return $users;
     }
 
     function getAllUserByYearLevel($year_level)
     {
-        $users = User::select('id', 'name', 'sr_code', 'year_level', 'department', 'gsuite_email',  'gender', 'mobile_number', 'branch', 'user_type', 'created_at', 'updated_at', 'is_active')
+        $users = User::select('id', 'name', 'sr_code', 'year_level', 'department', 'gsuite_email',  'gender', 'mobile_number', 'branch', 'user_type', 'created_at', 'updated_at', 'is_active', 'designation')
             ->where('year_level', $year_level)->get();
         return $users;
     }

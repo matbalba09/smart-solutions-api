@@ -139,6 +139,7 @@ class UserController extends Controller
                 'mobile_number' => $request->mobile_number,
                 'branch' => $request->branch,
                 'user_type' => $request->user_type,
+                'designation' => $request->designation,
             ]);
         } else {
             $existingUserSrCode = $this->userRepository->getUserBySrCode($request->sr_code);
@@ -160,6 +161,7 @@ class UserController extends Controller
                 'mobile_number' => $request->mobile_number,
                 'branch' => $request->branch,
                 'user_type' => $request->user_type,
+                'designation' => $request->designation,
             ]);
         }
 

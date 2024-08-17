@@ -30,6 +30,7 @@ class User extends Authenticatable
         'branch',
         'user_type',
         'is_active',
+        'designation',
     ];
 
     /**

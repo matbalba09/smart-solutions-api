@@ -45,7 +45,8 @@ class LogRepository implements ILogRepository
     function getAllLogsByEventId($event_id)
     {
         $logs = Log::with(['user' => function ($query) {
-            $query->select('id', 'name', 'sr_code', 'year_level', 'department', 'gsuite_email', 'created_at', 'updated_at', 'designation');
+            $query->select('id', 'name', 'sr_code', 'year_level', 'department', 'gsuite_email', 'gender', 
+            'mobile_number', 'branch', 'user_type', 'is_active', 'designation', 'created_at', 'updated_at');
         }])
             ->selectRaw('logs.*')
             ->leftJoin('users', function ($join) use ($event_id) {

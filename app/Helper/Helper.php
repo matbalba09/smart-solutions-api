@@ -28,7 +28,13 @@ class Helper
 
     public static function getDateNow()
     {
-        return Carbon::now()->format('Y-m-d H:i:s');
+        return Carbon::now('+08:00')->format('Y-m-d H:i:s');
+        // return Carbon::now()->addHours(7)->format('Y-m-d H:i:s');
+    }
+
+    public static function getDateNowIso()
+    {
+        return Carbon::now()->addHours(8)->toISOString();
         // return Carbon::now()->addHours(7)->format('Y-m-d H:i:s');
     }
 }

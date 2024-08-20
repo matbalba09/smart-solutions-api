@@ -14,7 +14,7 @@ class EventRepository implements IEventRepository
 
     function getAllEvents()
     {
-        $dateNow = Helper::getDateNow();
+        $dateNow = Helper::getDateNowIso();
         $events = Event::selectRaw('events.*, CASE 
                 WHEN events.event_type = 1 AND (? > events.end_date) THEN \'COMPLETED\' 
                 WHEN events.event_type = 1 AND ? BETWEEN events.start_date AND events.end_date THEN \'ONGOING\' 
@@ -37,7 +37,7 @@ class EventRepository implements IEventRepository
 
     function getAllEventsbyEventType($event_type)
     {
-        $dateNow = Helper::getDateNow();
+        $dateNow = Helper::getDateNowIso();
         $events = Event::selectRaw('events.*, CASE 
                 WHEN events.event_type = 1 AND (? > events.end_date) THEN \'COMPLETED\' 
                 WHEN events.event_type = 1 AND ? BETWEEN events.start_date AND events.end_date THEN \'ONGOING\' 
@@ -86,7 +86,7 @@ class EventRepository implements IEventRepository
 
     function getAllEventsByStatus($event_status)
     {
-        $dateNow = Helper::getDateNow();
+        $dateNow = Helper::getDateNowIso();
         if ($event_status == 'ONGOING') {
             $events = Event::where(function ($query) use ($dateNow) {
                 $query->where('start_date', '<', $dateNow)
